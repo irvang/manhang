@@ -1,0 +1,19 @@
+body {
+    background-color: #52200e;
+}
+
+main>* {
+    line-height: 1.5rem;
+    color: white;
+    letter-spacing: .2rem;
+    line-height: 1.5rem;
+}
+
+main>input {
+    background-color: darkgray
+}
+
+#new-word {
+    background-color: black;
+    border-radius: 5px;
+}
