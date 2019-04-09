@@ -2,7 +2,10 @@
 (function () {
     // function initGame(ALL_WORDS) {
 
-    fetchData(10, 2, 10);
+    //difficulty 1-10
+    // minLength 3-12
+    // maxLength 3-12
+    fetchData(1, 0, 50);
 
 }());
 
@@ -11,24 +14,23 @@ Fetch data receives 3 numbers: difficulty, minLength, maxLength
 These are the parameters that are to be the query string on the server side
 */
 function fetchData(difficulty, minLength, maxLength) {
+    // fetch('../words.txt') //faster for testing purposes
     return fetch(`/words/${difficulty}/${minLength}/${maxLength}`)
-        // fetch('../words.txt') //faster for testing purposes
         .then(function (response) {
             if (response.ok) {
-                return response.text();//a promise
-            } else {
-                throw new Error('ERROR: Network response wat not ok.');
-            }
+                console.log(typeof response)
+                return response.json();//a promise, convert to object
+            } 
         })
-        .then(text => {
+        .then(bodyAsJson => {
 
             //may have to restructure so that gui loads before all the response
             //====Starts game after receiving array
-            startGame(text.split('\n'));// passes as ALL_WORDS
-            console.log(text.split('\n'));// passes as ALL_WORDS
+            startGame(bodyAsJson);// passes as ALL_WORDS
+            console.log(typeof bodyAsJson);// passes as ALL_WORDS
         })
         .catch(function (error) {
-            console.log('Looks like there was a problem: \n', error);
+            console.log('ERROR: \n', error);
         });
 }
 

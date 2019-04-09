@@ -37,7 +37,6 @@ function addListeners(word, chooseWord) {
         this.style.backgroundColor = 'chartreuse';
       }
 
-      console.log(word.remainingTrials)
       if (word.remainingTrials <= 0) {
       
         remainingTrialsSpan.innerHTML = "Game over";
@@ -78,7 +77,7 @@ function addListeners(word, chooseWord) {
       word.revealed = '';
 
       //create full blanks, no letter word.revealed so far
-      for (let i = 0; i < word.single.length; i++) {
+      for (let i = 0; i < word.single.length; i++) { 
         word.revealed += '_';
       }
 
