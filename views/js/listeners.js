@@ -19,9 +19,19 @@ function addListeners(word, chooseWord) {
       displayUsedLettersP.innerHTML += letter + " ";
       this.value = '';// this === input
 
+      //if letter is not in string
+      if (!word.single.includes(letter)) word.missedCount++;
+      if(word.missedCount>=6) console.log('you lost it');
+
       let newRevealed = '';
       for (let i = 0; i < word.single.length; i++) {
-        newRevealed += letter === word.single[i] ? letter : word.revealed[i];
+        // newRevealed += letter === word.single[i] ? letter : word.revealed[i];
+
+        if (letter === word.single[i]) {
+          newRevealed += letter;
+        } else {
+          newRevealed += word.revealed[i];
+        }
       }
 
       word.revealed = newRevealed;
@@ -56,6 +66,9 @@ function addListeners(word, chooseWord) {
 
       //clear used letters
       document.querySelector('#display-used-letters').innerHTML = '';
+
+      //reset missed words
+      word.missedCount = 0;
 
     }
   }

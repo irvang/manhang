@@ -12,7 +12,8 @@ function initGame(ALL_WORDS) {
     /* an object, so it can be passed by reference to the different listeners */
     const word = {
         single: '',
-        revealed: ''
+        revealed: '',
+        missedCount: 0
     }
 
     console.log(word.single);
@@ -21,6 +22,17 @@ function initGame(ALL_WORDS) {
     addListeners(word, chooseWord);
 
 
-    const ALPHABET = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm','n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    const ALPHABET = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
+    const alphabetDiv = document.querySelector('div.alphabet');
+    let isFirstTime = true;
+
+    for (let i = 0; i < ALPHABET.length; i++) {
+        
+        if (i % 5 === 0 && i !== 0 && i !== ALPHABET.length-1) {
+            alphabetDiv.innerHTML += '<br>';
+        }
+        alphabetDiv.innerHTML += '<span>' + ALPHABET[i] + '</span>';
+
+    }
 }
