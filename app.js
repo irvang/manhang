@@ -26,8 +26,10 @@ app.get('/', function (req, res, next) {
 
 app.get('/words', function (req, res, next) {
 
+  /* To use the different queries in api: http://app.linkedin-reach.io/words?difficulty=1&minLength=3&maxLength=5 etc...*/
+
   fetch('http://app.linkedin-reach.io/words')
-  // fetch('/words.txt')
+    // fetch('/words.txt')
     .then(res => res.text())
     .then(body => {
       // res.render("index", { word_data: body })
