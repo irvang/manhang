@@ -1,4 +1,6 @@
-const PORT = 3000;
+//====PORT
+const PORT = process.env.PORT || 3000;
+
 const fetch = require('node-fetch');
 
 const express = require('express')
@@ -6,13 +8,14 @@ const express = require('express')
 const app = express()
 
 
-const bodyParser = require('body-parser');
+
+// const bodyParser = require('body-parser');
 
 // app.use(bodyParser.urlencoded({ extended: false }))
 // app.use(bodyParser.json())
 // app.use(bodyParser.text({ type: 'text/html' }))
 // app.use(bodyParser.text({ type: 'text/plain' }))
-//https://github.com/expressjs/express/wiki#template-engines
+// https://github.com/expressjs/express/wiki#template-engines
 // app.set('view engine', 'ejs')
 app.use('/', express.static('views'))
 
@@ -42,5 +45,5 @@ app.get('/words', function (req, res, next) {
 // app.use('/', express.static('views'));//rendering static html
 
 app.listen(PORT, function () {
-  console.log('CORS-enabled web server listening on port 3000')
+  console.log('Server listening on port ' + PORT);
 });
