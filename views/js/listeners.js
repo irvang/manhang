@@ -30,6 +30,7 @@ function addListeners(word, chooseWord) {
       if (!word.single.includes(letter)) {
         word.remainingTrials--;
         this.style.backgroundColor = 'red';
+        this.style.color = 'white';
 
         remainingTrialsSpan.innerHTML = word.remainingTrials;
       } else {
