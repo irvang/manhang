@@ -38,7 +38,7 @@ function addListeners(word, chooseWord) {
       }
 
       if (word.remainingTrials <= 0) {
-      
+
         remainingTrialsSpan.innerHTML = "Game over";
         document.querySelector('#word-display').innerText = word.single;
         return;
@@ -77,7 +77,7 @@ function addListeners(word, chooseWord) {
       word.revealed = '';
 
       //create full blanks, no letter word.revealed so far
-      for (let i = 0; i < word.single.length; i++) { 
+      for (let i = 0; i < word.single.length; i++) {
         word.revealed += '_';
       }
 
@@ -120,10 +120,9 @@ function addListeners(word, chooseWord) {
 
     }
   }
-
-
 }
 
 /*
-Will listeners be removed or stacked when reusing createAlphabetspans
+Will listeners be removed or stacked when reusing createAlphabetspans?
+How to modularize better in vanilla js?
 */

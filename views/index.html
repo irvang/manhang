@@ -19,12 +19,63 @@
         <!-- <br> -->
         <div class="alphabet"></div>
         <button id="new-word-b">New word</button>
-       
+
         <p id="remaining-trials">Remaining trials: <span></span></p>
         <p id='display-used-letters'>
             <!-- Initial blank space added in selectNewWord() -->
         </p>
+
     </main>
+
+    <section id="params">
+        <label for="difficulty">Difficulty</label>
+        <select name="difficulty" id="difficulty">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+
+        <label for="min-ength">Min length</label>
+        <select name="min-length" id="min-ength">
+
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+        </select>
+
+        <label for="max-ength">Max length</label>
+        <select name="max-length" id="max-ength">
+            <!-- <option value="1">1</option> -->
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </select>
+    </section>
+
 
 
     <script src="js/listeners.js"></script>
