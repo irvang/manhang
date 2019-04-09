@@ -10,21 +10,20 @@ function addListeners(word, chooseWord) {
 
   createAlphabetSpans(word, compareInputToWord);
 
-
+  
   //====LISTENER FUNCTIONS
   function compareInputToWord(word) {
 
-    //displays used letters
-    let displayUsedLettersP = document.querySelector('#display-used-letters');
+    /*To remove listener in an anonymous function (like a closure), the anonymous function
+      needs to be named. Works like a charm! See:
+    https://medium.com/@DavideRama/removeeventlistener-and-anonymous-functions-ab9dbabd3e7b */
+    return function innerListen(evt) {
+      let letter = evt.target.innerText;//because it is the inner within span
 
-    return function (evt) {
-      // let letter = evt.target.value;
-      let letter = evt.target.innerText;
-      // displayUsedLettersP.innerHTML += letter + " ";
 
       let remainingTrialsSpan = document.querySelector("#remaining-trials>span");
 
-      this.removeEventListener('click', compareInputToWord(word))
+      this.removeEventListener('click', innerListen);
 
       //if letter is not in string, decrease remaining trials and change color to red
       if (!word.single.includes(letter)) {
@@ -36,7 +35,7 @@ function addListeners(word, chooseWord) {
       } else {
         this.style.backgroundColor = 'chartreuse';
 
-        //changes to current revealed only need to happen if there is a match
+        //changes to current revealed only need to happen when there is a match
         let newRevealed = '';
         for (let i = 0; i < word.single.length; i++) {
           newRevealed += letter === word.single[i] ? letter : word.revealed[i];
