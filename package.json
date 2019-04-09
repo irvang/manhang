@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/irvang/manhang#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "node-fetch": "^2.3.0",
     "package.json": "^2.0.1"
