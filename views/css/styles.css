@@ -1,6 +1,7 @@
 body {
     background-color: #f5f5f5;
     box-sizing: border-box;
+    margin: 1%;
 }
 
 main * {
@@ -9,15 +10,30 @@ main * {
     letter-spacing: .2rem;
     line-height: 1.5rem;
     padding: 0.3rem;
+    margin: 1px;
 }
+
+main.center-screen {
+    margin: 0 auto;
+    max-width: 600px;
+}
+/* https://stackoverflow.com/questions/31217268/center-div-on-the-middle-of-screen */
+.center-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* min-height: 100vh; */
+  }
 
 /* main>input {
     background-color: greenyellow;
 } */
 
-#new-word {
+#new-word-b {
     background-color: greenyellow;
-    border-radius: 5px;
+    border-radius: 10px;
     color: black;
 }
 
@@ -25,4 +41,21 @@ div.alphabet>span {
     /* letter-spacing: .5rem; */
     margin: 0.2rem;
     padding: 0.1rem; /* override padding from 'main *' rule */
+    text-align: center;
+}
+
+/*====FLEXBOX */
+.alphabet {
+    display: flex;
+    flex-flow: row wrap;
+    /* flex-direction: row;
+    flex-wrap: wrap; */
+
+    align-items: center;
+    justify-content: space-around;
+    max-width: 400px;
+}
+
+.alphabet > span {
+    flex: 30px;
 }

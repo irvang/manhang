@@ -4,7 +4,7 @@ function addListeners(word, chooseWord) {
   // let input = document.querySelector('main>input');
   // input.addEventListener('input', compareInputToWord(word));
 
-  const newWordButton = document.querySelector("#new-word");
+  const newWordButton = document.querySelector("#new-word-b");
   newWordButton.addEventListener('click', selectNewWord(word, chooseWord));
   newWordButton.dispatchEvent(new Event('click')); //dispatch first time
 
@@ -26,13 +26,16 @@ function addListeners(word, chooseWord) {
 
       //if letter is not in string
       if (!word.single.includes(letter)) {
-        word.missedCount++;
+        word.remainingTrials--;
         this.style.backgroundColor = 'red';
+
+        document.querySelector("#remaining-trials>span").innerHTML = word.remainingTrials;
       } else {
         this.style.backgroundColor = 'chartreuse';
       }
 
-      if (word.missedCount >= 6) console.log('you lost it');
+      console.log(word.remainingTrials)
+      if (!word.remainingTrials ) console.log('you lost it');
 
       let newRevealed = '';
       for (let i = 0; i < word.single.length; i++) {
@@ -48,6 +51,7 @@ function addListeners(word, chooseWord) {
       word.revealed = newRevealed;
 
       document.querySelector('#word-display').innerText = word.revealed;
+     
     }
   }
 
@@ -80,9 +84,10 @@ function addListeners(word, chooseWord) {
       document.querySelector('#display-used-letters').innerHTML = ' ';
 
       //reset missed words
-      word.missedCount = 0;
+      word.remainingTrials = 6;
 
       createAlphabetSpans(word, compareInputToWord);
+      document.querySelector("#remaining-trials>span").innerHTML = word.remainingTrials;
     }
   }
 

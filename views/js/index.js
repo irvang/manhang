@@ -13,7 +13,7 @@ function initGame(ALL_WORDS) {
     const word = {
         single: '',
         revealed: '',
-        missedCount: 0
+        remainingTrials: 6
     }
 
     console.log(word.single);
