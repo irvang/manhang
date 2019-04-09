@@ -21,18 +21,6 @@ function initGame(ALL_WORDS) {
     //====ADD LISTENERS
     addListeners(word, chooseWord);
 
+    
 
-    const ALPHABET = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-
-    const alphabetDiv = document.querySelector('div.alphabet');
-    let isFirstTime = true;
-
-    for (let i = 0; i < ALPHABET.length; i++) {
-        
-        if (i % 5 === 0 && i !== 0 && i !== ALPHABET.length-1) {
-            alphabetDiv.innerHTML += '<br>';
-        }
-        alphabetDiv.innerHTML += '<span>' + ALPHABET[i] + '</span>';
-
-    }
 }
