@@ -41,8 +41,10 @@ main.center-screen {
 div.alphabet>span {
     /* letter-spacing: .5rem; */
     margin: 0.2rem;
-    padding: 0.1rem; /* override padding from 'main *' rule */
+    /* override padding from 'main *' rule */
+    /* padding: 0.1rem;  */
     text-align: center;
+    border: 1px solid #2196f3;
 }
 
 /*====FLEXBOX */
@@ -58,5 +60,5 @@ div.alphabet>span {
 }
 
 .alphabet > span {
-    flex: 30px;
-}
+    flex: 35px;
+} 

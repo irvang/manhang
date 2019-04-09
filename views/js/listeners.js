@@ -22,6 +22,8 @@ function addListeners(word, chooseWord) {
       let letter = evt.target.innerText;
       // displayUsedLettersP.innerHTML += letter + " ";
 
+      let remainingTrialsSpan = document.querySelector("#remaining-trials>span");
+
       this.removeEventListener('click', compareInputToWord(word))
 
       //if letter is not in string
@@ -29,13 +31,18 @@ function addListeners(word, chooseWord) {
         word.remainingTrials--;
         this.style.backgroundColor = 'red';
 
-        document.querySelector("#remaining-trials>span").innerHTML = word.remainingTrials;
+        remainingTrialsSpan.innerHTML = word.remainingTrials;
       } else {
         this.style.backgroundColor = 'chartreuse';
       }
 
       console.log(word.remainingTrials)
-      if (!word.remainingTrials ) console.log('you lost it');
+      if (word.remainingTrials <= 0) {
+      
+        remainingTrialsSpan.innerHTML = "Game over";
+        document.querySelector('#word-display').innerText = word.single;
+        return;
+      }
 
       let newRevealed = '';
       for (let i = 0; i < word.single.length; i++) {
@@ -51,7 +58,7 @@ function addListeners(word, chooseWord) {
       word.revealed = newRevealed;
 
       document.querySelector('#word-display').innerText = word.revealed;
-     
+
     }
   }
 
@@ -117,6 +124,6 @@ function addListeners(word, chooseWord) {
 
 }
 
-/* 
+/*
 Will listeners be removed or stacked when reusing createAlphabetspans
 */
