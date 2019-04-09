@@ -26,15 +26,24 @@ function addListeners(word, chooseWord) {
 
       this.removeEventListener('click', compareInputToWord(word))
 
-      //if letter is not in string
+      //if letter is not in string, decrease remaining trials and change color to red
       if (!word.single.includes(letter)) {
         word.remainingTrials--;
         this.style.backgroundColor = 'red';
         this.style.color = 'white';
 
-        remainingTrialsSpan.innerHTML = word.remainingTrials;
+        remainingTrialsSpan.innerHTML = word.remainingTrials; // display remaining trials
       } else {
         this.style.backgroundColor = 'chartreuse';
+
+        //changes to current revealed only need to happen if there is a match
+        let newRevealed = '';
+        for (let i = 0; i < word.single.length; i++) {
+          newRevealed += letter === word.single[i] ? letter : word.revealed[i];
+        }
+
+        word.revealed = newRevealed;
+        document.querySelector('#word-display').innerText = word.revealed;
       }
 
       if (word.remainingTrials <= 0) {
@@ -43,22 +52,6 @@ function addListeners(word, chooseWord) {
         document.querySelector('#word-display').innerText = word.single;
         return;
       }
-
-      let newRevealed = '';
-      for (let i = 0; i < word.single.length; i++) {
-        // newRevealed += letter === word.single[i] ? letter : word.revealed[i];
-
-        if (letter === word.single[i]) {
-          newRevealed += letter;
-        } else {
-          newRevealed += word.revealed[i];
-        }
-      }
-
-      word.revealed = newRevealed;
-
-      document.querySelector('#word-display').innerText = word.revealed;
-
     }
   }
 
