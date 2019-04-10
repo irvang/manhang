@@ -11,7 +11,7 @@ main * {
     color: black;
     letter-spacing: .2rem;
     line-height: 1.5rem;
-    /* padding: 0.3rem; */
+    padding: 0.1rem 0.3rem;
     margin: 1px;
 }
 
@@ -55,7 +55,7 @@ main.center-screen {}
     color: black;
 }
 
-div.alphabet>span {
+div.alphabet span {
     /* letter-spacing: .5rem; */
     margin: 0.15rem;
     /* override padding from 'main *' rule */
@@ -69,14 +69,26 @@ div.alphabet>span {
 
 .alphabet {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column wrap;
     /* flex-direction: row;
     flex-wrap: wrap; */
+
+    /* align-items: center;
+    justify-content: space-around;
+    max-width: 270px; */
+}
+
+.alphabet>div {
+    flex: 35px;
+
+    display: flex;
+    flex-flow: row ;
+
     align-items: center;
     justify-content: space-around;
     max-width: 270px;
 }
 
-.alphabet>span {
+.alphabet>div>span {
     flex: 35px;
 }
