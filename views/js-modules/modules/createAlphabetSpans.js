@@ -1,5 +1,4 @@
 import compareInputToWord from './compareInputToWord.js';
-import words from './words.js';
 
 export default function createAlphabetSpans() {
 
@@ -12,7 +11,7 @@ export default function createAlphabetSpans() {
   for (let i = 0; i < ALPHABET.length; i++) {
     const span = document.createElement('span');
 
-    span.addEventListener('click', compareInputToWord());
+    span.addEventListener('click', compareInputToWord);
     span.innerHTML = ALPHABET[i];
     alphabetDiv.append(span);
 

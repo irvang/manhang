@@ -1,8 +1,9 @@
-
+import selectNewWord from './selectNewWord.js';
+import words from './words.js';
 
 // UNUSED SO FAR
 export default function apiParams() {
-// export default function apiParams(word, chooseWord, createAlphabetSpans, selectNewWord) {
+  // export default function apiParams(word, chooseWord, createAlphabetSpans, selectNewWord) {
 
   let selectDifficulty = document.querySelector('#difficulty');
   let selectMinLength = document.querySelector('#min-length');
@@ -12,11 +13,11 @@ export default function apiParams() {
 
   sectionParams.addEventListener('change', evt => {
     console.log(selectDifficulty.value,
-      selectMinLength.value, selectMaxLength.value);
+      selectMinLength.value, parseInt(selectMaxLength.value) + 1);
     fetchDataAndUpdate(
       parseInt(selectDifficulty.value),
       parseInt(selectMinLength.value),
-      parseInt(selectMaxLength.value));
+      parseInt(selectMaxLength.value) + 1);
   });
 
   function fetchDataAndUpdate(difficulty, minLength, maxLength) {
@@ -30,9 +31,10 @@ export default function apiParams() {
       })
       .then(bodyAsJson => {
 
+        words.ALL_WORDS = bodyAsJson;
         //may have to restructure so that gui loads before all the response
         //====Starts game after receiving array
-        selectNewWord(bodyAsJson);// passes as ALL_WORDS
+        selectNewWord();// passes as ALL_WORDS
         // console.log(typeof bodyAsJson);// passes as ALL_WORDS
       })
       .catch(error => console.log('ERROR: \n', error));
