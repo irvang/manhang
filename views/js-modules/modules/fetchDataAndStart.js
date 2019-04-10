@@ -1,4 +1,4 @@
-import startGame from './startGame.js';
+import startGameAddListeners from './startGameAddListeners.js';
 import words from './words.js';
 
 /* 
@@ -20,7 +20,7 @@ export function fetchDataAndStart(difficulty, minLength, maxLength) {
       //====Starts game after receiving array
 
       words.ALL_WORDS = bodyAsJson;
-      startGame();// passes as ALL_WORDS
+      startGameAddListeners();// passes as ALL_WORDS
     })
     .catch(error => console.log('ERROR: \n', error));
 }

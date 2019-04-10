@@ -3,7 +3,7 @@ import alphabetSpansListeners from './alphabetSpansListeners.js';
 import apiParamsListeners from './apiParamsListeners.js';
 
 
-export default function addListeners() {
+export default function startGameAddListeners() {
 
   const newWordButton = document.querySelector("#new-word-b");
   newWordButton.addEventListener('click', selectNewWord);
