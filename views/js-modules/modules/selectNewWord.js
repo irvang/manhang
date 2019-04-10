@@ -2,6 +2,9 @@ import alphabetSpansListeners from './alphabetSpansListeners.js';
 import chooseWord from './chooseWord.js';
 import words from './words.js';
 
+/* 
+Used in addListeners.js and apiParams.js
+*/
 export default function selectNewWord() {
 
     words.single = chooseWord();
@@ -16,9 +19,6 @@ export default function selectNewWord() {
 
     //add blanks to div when newwords is selected
     document.querySelector('#word-display').innerText = words.revealed;
-
-    //clear used letters
-    document.querySelector('#display-used-letters').innerHTML = ' ';
 
     //reset missedwordss
     words.remainingTrials = 6;
