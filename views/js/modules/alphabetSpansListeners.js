@@ -1,6 +1,20 @@
 // import compareInputToWord from './compareInputToWord.js';
 
 import words from './words.js';
+import drawCanvas from './drawCanvas.js';
+
+/* 
+Adds listeners to spans
+Compares input to word
+*/
+
+export default function alphabetSpansListeners() {
+  const alphabetSpans = document.querySelectorAll('div.alphabet span');
+
+  for (let i = 0; i < alphabetSpans.length; i++) {
+    alphabetSpans[i].addEventListener('click', compareInputToWord);
+  }
+}
 
 function compareInputToWord(evt) {
 
@@ -38,6 +52,7 @@ function compareInputToWord(evt) {
     this.style.backgroundColor = 'red';
     this.style.color = 'white';
     remainingTrialsSpan.innerHTML = words.remainingTrials; // display remaining trials
+    drawCanvas(words.remainingTrials);
 
   }
 
@@ -58,10 +73,4 @@ function compareInputToWord(evt) {
 }
 
 
-export default function alphabetSpansListeners() {
-  const alphabetSpans = document.querySelectorAll('div.alphabet span');
 
-  for (let i = 0; i < alphabetSpans.length; i++) {
-    alphabetSpans[i].addEventListener('click', compareInputToWord);
-  }
-}
