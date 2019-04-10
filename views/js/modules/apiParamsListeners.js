@@ -12,12 +12,13 @@ export default function apiParamsListeners() {
   let sectionParams = document.querySelector('#params');
 
   sectionParams.addEventListener('change', evt => {
-    console.log(parseInt(selectDifficulty.value),
-      parseInt(selectMinLength.value), parseInt(selectMaxLength.value) + 1);
+
 
     fetchDataAndUpdate(
       parseInt(selectDifficulty.value),
       parseInt(selectMinLength.value),
+
+      /* Adding one to make interface more intuitive for user. */
       parseInt(selectMaxLength.value) + 1);
   });
 }
