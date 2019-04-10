@@ -1,6 +1,5 @@
 import startGame from './startGame.js';
 
-let wordArray = [];
 /* 
 Fetch data receives 3 numbers: difficulty, minLength, maxLength
 These are the parameters that are to be the query string on the server side

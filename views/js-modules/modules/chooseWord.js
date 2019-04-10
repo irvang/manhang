@@ -2,7 +2,7 @@
 function that may be passed to listeners*/
 
 export default function chooseWord(ALL_WORDS) {
-  return function () {
+  // return function () {
     return ALL_WORDS[Math.floor(Math.random() * ALL_WORDS.length)];
-  }
+  // }
 }

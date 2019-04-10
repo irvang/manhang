@@ -1,13 +1,13 @@
 import compareInputToWord from './compareInputToWord.js';
 import createAlphabetSpans from './createAlphabetSpans.js';
+import chooseWord from './chooseWord.js';
 
-
-export default function selectNewWord(word, chooseWord) {
+export default function selectNewWord(word) {
 
   return function () {
 
 
-    word.single = chooseWord();;
+    word.single = chooseWord(word.ALL_WORDS);
 
     console.log('word: ' + word.single);
 

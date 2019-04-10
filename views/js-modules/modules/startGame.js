@@ -15,11 +15,12 @@ function that may be passed to listeners*/
   const word = {
     single: '',
     revealed: '',
-    remainingTrials: 6
+    remainingTrials: 6,
+    ALL_WORDS
   }
 
-  console.log(word.single);
+  console.log(word);
 
   //====ADD LISTENERS
-  addListeners(word, chooseWord(ALL_WORDS));
+  addListeners(word);
 }

@@ -4,7 +4,7 @@ import selectNewWord from './selectNewWord.js';
 import createAlphabetSpans from './compareInputToWord.js';
 
 
-export default function addListeners(word, chooseWord) {
+export default function addListeners(word, ALL_WORDS) {
 
 
   //===LISTENERS
@@ -14,7 +14,7 @@ export default function addListeners(word, chooseWord) {
   const newWordButton = document.querySelector("#new-word-b");
 
   newWordButton.addEventListener('click',
-    selectNewWord(word, chooseWord));
+    selectNewWord(word));
 
   newWordButton.dispatchEvent(new Event('click')); //dispatch first time
 
