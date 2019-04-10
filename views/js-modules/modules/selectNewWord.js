@@ -1,5 +1,5 @@
 import alphabetSpansListeners from './alphabetSpansListeners.js';
-import chooseWord from './chooseWord.js';
+
 import words from './words.js';
 
 /* 
@@ -7,7 +7,7 @@ Used in addListeners.js and apiParams.js
 */
 export default function selectNewWord() {
 
-    words.single = chooseWord();
+    words.single = words.ALL_WORDS[Math.floor(Math.random() * words.ALL_WORDS.length)];
 
     //create a string of the lenght of thewords that holds the length of of thewords in blanks
     words.revealed = '';
