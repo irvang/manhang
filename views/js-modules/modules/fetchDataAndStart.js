@@ -1,11 +1,11 @@
 import startGame from './startGame.js';
 
-console.log('data at fetch', startGame);
+let wordArray = [];
 /* 
 Fetch data receives 3 numbers: difficulty, minLength, maxLength
 These are the parameters that are to be the query string on the server side
 */
-export default function fetchDataAndStart(difficulty, minLength, maxLength) {
+export function fetchDataAndStart(difficulty, minLength, maxLength) {
   // fetch('../words.txt') //faster for testing purposes
   return fetch(`/words/${difficulty}/${minLength}/${maxLength}`)
     .then(function (response) {
@@ -18,8 +18,9 @@ export default function fetchDataAndStart(difficulty, minLength, maxLength) {
 
       //may have to restructure so that gui loads before all the response
       //====Starts game after receiving array
+      wordArray = bodyAsJson;
       startGame(bodyAsJson);// passes as ALL_WORDS
-      // console.log(typeof bodyAsJson);// passes as ALL_WORDS
+      // console.log(bodyAsJson);// passes as ALL_WORDS
     })
     .catch(error => console.log('ERROR: \n', error));
 }

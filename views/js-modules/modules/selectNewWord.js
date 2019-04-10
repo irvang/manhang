@@ -1,4 +1,8 @@
-export default function selectNewWord(word, chooseWord, createAlphabetSpans) {
+import compareInputToWord from './compareInputToWord.js';
+import createAlphabetSpans from './createAlphabetSpans.js';
+
+
+export default function selectNewWord(word, chooseWord) {
 
   return function () {
 
