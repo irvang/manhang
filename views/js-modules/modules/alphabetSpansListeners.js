@@ -43,13 +43,15 @@ function compareInputToWord(evt) {
 
 
   if (words.revealed === words.single) {
-    remainingTrialsP.innerHTML = "You got it!";
+    //span after text is needed so no error is thrown if the listeners 
+    // are resued after ending game, a bit sketchy ...
+    remainingTrialsP.innerHTML = "You got it!<span></span>";
     return;
   }
 
 
   if (words.remainingTrials <= 0) {
-    remainingTrialsP.innerHTML = "Game over";
+    remainingTrialsP.innerHTML = "Game over<span></span>";
     document.querySelector('#word-display').innerText = words.single;
     return;
   }
