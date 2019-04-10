@@ -1,4 +1,5 @@
 import alphabetSpansListeners from './alphabetSpansListeners.js';
+import drawCanvas from './drawCanvas.js';
 
 import words from './words.js';
 
@@ -21,6 +22,9 @@ export default function selectNewWord() {
 
   //reset remaining trials
   words.remainingTrials = 6;
+
+  // clear canvas
+  drawCanvas(words.remainingTrials);
 
   alphabetSpansListeners(); //add listeners that may have been removed
 

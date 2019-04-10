@@ -5,6 +5,10 @@ function drawCanvas(aNumber) {
     var ctx = canvas.getContext('2d');
 
     switch (aNumber) {
+      case 6:
+        // clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        break;
       case 5:
         ctx.beginPath();
         ctx.strokeStyle = 'blue';
@@ -66,10 +70,10 @@ function draw2() {
       case 5:
         ctx.beginPath();
         ctx.strokeStyle = 'blue';
-            //body
-    ctx.moveTo(75, 75);
-    ctx.lineTo(75, 100);
-    ctx.stroke();
+        //body
+        ctx.moveTo(75, 75);
+        ctx.lineTo(75, 100);
+        ctx.stroke();
         break;
     }
     ctx.beginPath();
