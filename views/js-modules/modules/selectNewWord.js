@@ -3,7 +3,7 @@ import alphabetSpansListeners from './alphabetSpansListeners.js';
 import words from './words.js';
 
 /* 
-Used in addListeners.js and apiParams.js
+Used in addListeners.js and apiParamsListeners.js
 */
 export default function selectNewWord() {
 

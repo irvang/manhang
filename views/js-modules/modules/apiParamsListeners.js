@@ -2,8 +2,8 @@ import selectNewWord from './selectNewWord.js';
 import words from './words.js';
 
 // UNUSED SO FAR
-export default function apiParams() {
-  // export default function apiParams(word, chooseWord, alphabetSpansListeners, selectNewWord) {
+export default function apiParamsListeners() {
+  // export default function apiParamsListeners(word, chooseWord, alphabetSpansListeners, selectNewWord) {
 
   let selectDifficulty = document.querySelector('#difficulty');
   let selectMinLength = document.querySelector('#min-length');

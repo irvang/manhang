@@ -1,6 +1,6 @@
 import selectNewWord from './selectNewWord.js';
 import alphabetSpansListeners from './alphabetSpansListeners.js';
-import apiParams from './apiParams.js';
+import apiParamsListeners from './apiParamsListeners.js';
 
 
 export default function addListeners() {
@@ -12,5 +12,5 @@ export default function addListeners() {
   newWordButton.dispatchEvent(new Event('click'));
 
   alphabetSpansListeners();
-  apiParams();
+  apiParamsListeners();
 }
