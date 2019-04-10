@@ -1,5 +1,5 @@
 import selectNewWord from './selectNewWord.js';
-import createAlphabetSpans from './createAlphabetSpans.js';
+import alphabetSpansListeners from './alphabetSpansListeners.js';
 import apiParams from './apiParams.js';
 
 
@@ -11,6 +11,6 @@ export default function addListeners() {
   //dispatch first time in order to get a random word
   newWordButton.dispatchEvent(new Event('click'));
 
-  createAlphabetSpans();
+  alphabetSpansListeners();
   apiParams();
 }

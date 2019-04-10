@@ -3,7 +3,7 @@ import words from './words.js';
 
 // UNUSED SO FAR
 export default function apiParams() {
-  // export default function apiParams(word, chooseWord, createAlphabetSpans, selectNewWord) {
+  // export default function apiParams(word, chooseWord, alphabetSpansListeners, selectNewWord) {
 
   let selectDifficulty = document.querySelector('#difficulty');
   let selectMinLength = document.querySelector('#min-length');

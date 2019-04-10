@@ -1,6 +1,6 @@
 import compareInputToWord from './compareInputToWord.js';
 
-export default function createAlphabetSpans() {
+export default function alphabetSpansListeners() {
 
   const ALPHABET = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
     'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
@@ -17,7 +17,9 @@ export default function createAlphabetSpans() {
 
   }
  */
-  const alphabetDiv = document.querySelectorAll('div.alphabet span');
+  const alphabetSpans = document.querySelectorAll('div.alphabet span');
 
-
+  for (let i = 0; i< alphabetSpans.length ; i++ ){
+    alphabetSpans[i].addEventListener('click', compareInputToWord);
+  }
 }

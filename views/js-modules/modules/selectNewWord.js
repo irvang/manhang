@@ -1,4 +1,4 @@
-import createAlphabetSpans from './createAlphabetSpans.js';
+import alphabetSpansListeners from './alphabetSpansListeners.js';
 import chooseWord from './chooseWord.js';
 import words from './words.js';
 
@@ -23,7 +23,7 @@ export default function selectNewWord() {
     //reset missedwordss
     words.remainingTrials = 6;
 
-    createAlphabetSpans();
+    alphabetSpansListeners();
     document.querySelector("#remaining-trials>span").innerHTML = words.remainingTrials;
 
     console.log('word: ' + words.single);
