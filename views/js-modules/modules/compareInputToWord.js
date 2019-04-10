@@ -1,6 +1,7 @@
+
 import words from './words.js';
 
-export default function compareInputToWord(evt) {
+function compareInputToWord(evt) {
 
   /*To remove listener in a function expression (like a closure), the anonymous function
     needs to be named. Works like a charm! See:

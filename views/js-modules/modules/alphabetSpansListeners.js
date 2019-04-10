@@ -1,25 +1,51 @@
-import compareInputToWord from './compareInputToWord.js';
+// import compareInputToWord from './compareInputToWord.js';
 
+import words from './words.js';
 export default function alphabetSpansListeners() {
-
-  const ALPHABET = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
-    'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-/* 
-  const alphabetDiv = document.querySelector('div.alphabet');
-  alphabetDiv.innerHTML = '';//concern is whether listeners will be removed or stack
-
-  for (let i = 0; i < ALPHABET.length; i++) {
-    const span = document.createElement('span');
-
-    span.addEventListener('click', compareInputToWord);
-    span.innerHTML = ALPHABET[i];
-    alphabetDiv.append(span);
-
-  }
- */
   const alphabetSpans = document.querySelectorAll('div.alphabet span');
 
   for (let i = 0; i< alphabetSpans.length ; i++ ){
     alphabetSpans[i].addEventListener('click', compareInputToWord);
+  }
+}
+
+function compareInputToWord(evt) {
+
+  /*To remove listener in a function expression (like a closure), the anonymous function
+    needs to be named. Works like a charm! See:
+  https://medium.com/@DavideRama/removeeventlistener-and-anonymous-functions-ab9dbabd3e7b */
+
+
+  let letter = evt.target.innerText;//because it is the inner within span
+
+  let remainingTrialsSpan = document.querySelector("#remaining-trials>span");
+
+  this.removeEventListener('click', compareInputToWord);//this === span
+
+  //if letter is not in string, decrease remaining trials and change color to red
+  if (!words.single.includes(letter)) {
+    words.remainingTrials--;
+    this.style.backgroundColor = 'red';
+    this.style.color = 'white';
+    remainingTrialsSpan.innerHTML = words.remainingTrials; // display remaining trials
+    
+  } else {
+    this.style.backgroundColor = 'chartreuse';
+
+    //changes to current revealed only need to happen when there is a match
+    let newRevealed = '';
+    for (let i = 0; i < words.single.length; i++) {
+      newRevealed += letter === words.single[i] ? letter : words.revealed[i];
+    }
+
+    words.revealed = newRevealed;
+    document.querySelector('#word-display').innerText = words.revealed;
+  }
+
+  if (words.remainingTrials <= 0) {
+
+    remainingTrialsSpan.innerHTML = "Game over";
+    document.querySelector('#word-display').innerText = words.single;
+    return;
   }
 }
