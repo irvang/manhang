@@ -1,4 +1,8 @@
-export default function apiParams(word, chooseWord, createAlphabetSpans, selectNewWord) {
+
+
+// UNUSED SO FAR
+export default function apiParams() {
+// export default function apiParams(word, chooseWord, createAlphabetSpans, selectNewWord) {
 
   let selectDifficulty = document.querySelector('#difficulty');
   let selectMinLength = document.querySelector('#min-length');

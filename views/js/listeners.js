@@ -30,28 +30,28 @@ function addListeners(word, chooseWord) {
 
       //if letter is not in string, decrease remaining trials and change color to red
       if (!word.single.includes(letter)) {
-        word.remainingTrials--;
+       words.remainingTrials--;
         this.style.backgroundColor = 'red';
         this.style.color = 'white';
 
-        remainingTrialsSpan.innerHTML = word.remainingTrials; // display remaining trials
+        remainingTrialsSpan.innerHTML =words.remainingTrials; // display remaining trials
       } else {
         this.style.backgroundColor = 'chartreuse';
 
         //changes to current revealed only need to happen when there is a match
         let newRevealed = '';
-        for (let i = 0; i < word.single.length; i++) {
-          newRevealed += letter === word.single[i] ? letter : word.revealed[i];
+        for (let i = 0; i <words.single.length; i++) {
+          newRevealed += letter ===words.single[i] ? letter :words.revealed[i];
         }
 
-        word.revealed = newRevealed;
-        document.querySelector('#word-display').innerText = word.revealed;
+       words.revealed = newRevealed;
+        document.querySelector('#word-display').innerText =words.revealed;
       }
 
       if (word.remainingTrials <= 0) {
 
         remainingTrialsSpan.innerHTML = "Game over";
-        document.querySelector('#word-display').innerText = word.single;
+        document.querySelector('#word-display').innerText =words.single;
         return;
       }
     }
@@ -63,33 +63,33 @@ function addListeners(word, chooseWord) {
     return function () {
 
 
-      word.single = chooseWord();;
+     words.single = chooseWord();;
 
-      console.log('word: ' + word.single);
+      console.log('word: ' +words.single);
 
 
       //create a string of the lenght of the word that holds the length of of the word in blanks
-      word.revealed = '';
+     words.revealed = '';
 
-      //create full blanks, no letter word.revealed so far
-      for (let i = 0; i < word.single.length; i++) {
-        word.revealed += '_';
+      //create full blanks, no letterwords.revealed so far
+      for (let i = 0; i <words.single.length; i++) {
+       words.revealed += '_';
       }
 
       //check length is same as blanks
-      console.log('lenght equal:', word.revealed.length === word.single.length);
+      console.log('lenght equal:',words.revealed.length ===words.single.length);
 
       //add blanks to div when new word is selected
-      document.querySelector('#word-display').innerText = word.revealed;
+      document.querySelector('#word-display').innerText =words.revealed;
 
       //clear used letters
       document.querySelector('#display-used-letters').innerHTML = ' ';
 
       //reset missed words
-      word.remainingTrials = 6;
+     words.remainingTrials = 6;
 
       createAlphabetSpans(word, compareInputToWord);
-      document.querySelector("#remaining-trials>span").innerHTML = word.remainingTrials;
+      document.querySelector("#remaining-trials>span").innerHTML =words.remainingTrials;
     }
   }
 

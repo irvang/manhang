@@ -17,7 +17,7 @@ export function fetchDataAndStart(difficulty, minLength, maxLength) {
 
       //may have to restructure so that gui loads before all the response
       //====Starts game after receiving array
-      wordArray = bodyAsJson;
+
       startGame(bodyAsJson);// passes as ALL_WORDS
       // console.log(bodyAsJson);// passes as ALL_WORDS
     })

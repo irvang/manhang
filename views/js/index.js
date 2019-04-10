@@ -35,7 +35,7 @@ function fetchDataAndStart(difficulty, minLength, maxLength) {
 }
 
 function startGame(ALL_WORDS) {
-    /* selects a random word. The idea is to have fewer globals and a reusable
+    /* selects a randomwords. The idea is to have fewer globals and a reusable
  function that may be passed to listeners*/
     const chooseWord = function (ALL_WORDS) {
         return function () {
@@ -44,7 +44,7 @@ function startGame(ALL_WORDS) {
     }(ALL_WORDS);
 
     /* an object, so it can be passed by reference to the different listeners */
-    const word = {
+    constwords = {
         single: '',
         revealed: '',
         remainingTrials: 6

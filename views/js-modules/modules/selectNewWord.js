@@ -2,37 +2,39 @@ import compareInputToWord from './compareInputToWord.js';
 import createAlphabetSpans from './createAlphabetSpans.js';
 import chooseWord from './chooseWord.js';
 
-export default function selectNewWord(word) {
+import words from './words.js';
+
+export default function selectNewWord() {
 
   return function () {
 
 
-    word.single = chooseWord(word.ALL_WORDS);
+    words.single = chooseWord(words.ALL_WORDS);
 
-    console.log('word: ' + word.single);
+    console.log('word: ' + words.single);
 
 
-    //create a string of the lenght of the word that holds the length of of the word in blanks
-    word.revealed = '';
+    //create a string of the lenght of thewords that holds the length of of thewords in blanks
+    words.revealed = '';
 
-    //create full blanks, no letter word.revealed so far
-    for (let i = 0; i < word.single.length; i++) {
-      word.revealed += '_';
+    //create full blanks, no letterwords.revealed so far
+    for (let i = 0; i < words.single.length; i++) {
+      words.revealed += '_';
     }
 
     //check length is same as blanks
-    console.log('lenght equal:', word.revealed.length === word.single.length);
+    console.log('lenght equal:', words.revealed.length === words.single.length);
 
-    //add blanks to div when new word is selected
-    document.querySelector('#word-display').innerText = word.revealed;
+    //add blanks to div when newwords is selected
+    document.querySelector('#word-display').innerText = words.revealed;
 
     //clear used letters
     document.querySelector('#display-used-letters').innerHTML = ' ';
 
-    //reset missed words
-    word.remainingTrials = 6;
+    //reset missedwordss
+    words.remainingTrials = 6;
 
-    createAlphabetSpans(word, compareInputToWord);
-    document.querySelector("#remaining-trials>span").innerHTML = word.remainingTrials;
+    createAlphabetSpans(words, compareInputToWord);
+    document.querySelector("#remaining-trials>span").innerHTML = words.remainingTrials;
   }
 }
