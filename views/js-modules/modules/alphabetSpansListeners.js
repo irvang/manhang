@@ -1,13 +1,6 @@
 // import compareInputToWord from './compareInputToWord.js';
 
 import words from './words.js';
-export default function alphabetSpansListeners() {
-  const alphabetSpans = document.querySelectorAll('div.alphabet span');
-
-  for (let i = 0; i< alphabetSpans.length ; i++ ){
-    alphabetSpans[i].addEventListener('click', compareInputToWord);
-  }
-}
 
 function compareInputToWord(evt) {
 
@@ -16,23 +9,22 @@ function compareInputToWord(evt) {
   https://medium.com/@DavideRama/removeeventlistener-and-anonymous-functions-ab9dbabd3e7b */
 
 
-  let letter = evt.target.innerText;//because it is the inner within span
+  const letter = evt.target.innerText;//because it is the inner within span
 
-  let remainingTrialsSpan = document.querySelector("#remaining-trials>span");
+  const remainingTrialsSpan = document.querySelector("#remaining-trials>span");
+  const remainingTrialsP = document.querySelector('#remaining-trials');
 
   this.removeEventListener('click', compareInputToWord);//this === span
 
-  //if letter is not in string, decrease remaining trials and change color to red
-  if (!words.single.includes(letter)) {
-    words.remainingTrials--;
-    this.style.backgroundColor = 'red';
-    this.style.color = 'white';
-    remainingTrialsSpan.innerHTML = words.remainingTrials; // display remaining trials
-    
-  } else {
+
+  /* if letter is in string, change color to greenish chartreuse and reveal the
+  matches within the blanks */
+  if (words.single.includes(letter)) {
     this.style.backgroundColor = 'chartreuse';
 
-    //changes to current revealed only need to happen when there is a match
+    /* loop through word, if letter and word[i] match, add the letter to the 
+    revealed word, if not, add words.revealed[i], which is either a blank or 
+    any previously matched letter */
     let newRevealed = '';
     for (let i = 0; i < words.single.length; i++) {
       newRevealed += letter === words.single[i] ? letter : words.revealed[i];
@@ -40,12 +32,34 @@ function compareInputToWord(evt) {
 
     words.revealed = newRevealed;
     document.querySelector('#word-display').innerText = words.revealed;
+  } else {
+    //if letter is not in string, decrease remaining trials and change color to red
+    words.remainingTrials--;
+    this.style.backgroundColor = 'red';
+    this.style.color = 'white';
+    remainingTrialsSpan.innerHTML = words.remainingTrials; // display remaining trials
+
   }
 
-  if (words.remainingTrials <= 0) {
 
-    remainingTrialsSpan.innerHTML = "Game over";
+  if (words.revealed === words.single) {
+    remainingTrialsP.innerHTML = "You got it!";
+    return;
+  }
+
+
+  if (words.remainingTrials <= 0) {
+    remainingTrialsP.innerHTML = "Game over";
     document.querySelector('#word-display').innerText = words.single;
     return;
+  }
+}
+
+
+export default function alphabetSpansListeners() {
+  const alphabetSpans = document.querySelectorAll('div.alphabet span');
+
+  for (let i = 0; i < alphabetSpans.length; i++) {
+    alphabetSpans[i].addEventListener('click', compareInputToWord);
   }
 }

@@ -5,6 +5,8 @@
 
 const words = {
   single: '',
+
+  //create a string that holds the length of of the words in blanks, or whatever is revealed so far
   revealed: '',
   remainingTrials: 6,
   ALL_WORDS: []//dummy, will be replaced with filtered data

@@ -7,26 +7,33 @@ Used in startGameAddListeners.js and apiParamsListeners.js
 */
 export default function selectNewWord() {
 
-    words.single = words.ALL_WORDS[Math.floor(Math.random() * words.ALL_WORDS.length)];
+  words.single = words.ALL_WORDS[Math.floor(Math.random() * words.ALL_WORDS.length)];
 
-    //create a string of the lenght of thewords that holds the length of of thewords in blanks
-    words.revealed = '';
+  words.revealed = ''; // see definition
 
-    //create full blanks, no letterwords.revealed so far
-    for (let i = 0; i < words.single.length; i++) {
-      words.revealed += '_';
-    }
+  //create underscores of the full lenght of word, no letters revealed so far
+  for (let i = 0; i < words.single.length; i++) {
+    words.revealed += '_';
+  }
 
-    //add blanks to div when newwords is selected
-    document.querySelector('#word-display').innerText = words.revealed;
+  //add blanks to div when newwords is selected
+  document.querySelector('#word-display').innerText = words.revealed;
 
-    //reset missedwordss
-    words.remainingTrials = 6;
+  //reset remaining trials
+  words.remainingTrials = 6;
 
-    alphabetSpansListeners();
-    document.querySelector("#remaining-trials>span").innerHTML = words.remainingTrials;
+  alphabetSpansListeners(); //add listeners that may have been removed
 
-    console.log('word: ' + words.single);
-    //check length is same as blanks
-    console.log('lenght equal:', words.revealed.length === words.single.length);
+  document.querySelector("#remaining-trials").innerHTML = `Remaining trials:<span>${words.remainingTrials}</span>`
+
+  const alphabetSpans = document.querySelectorAll('div.alphabet span');
+
+  for (let i = 0; i < alphabetSpans.length; i++) {
+    alphabetSpans[i].style = "background-color: '', color: black ";
+  }
+
+
+  console.log('word: ' + words.single);
+  //check length is same as blanks
+  console.log('lenght equal:', words.revealed.length === words.single.length);
 }
