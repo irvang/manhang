@@ -5,12 +5,15 @@ function addListeners(word, chooseWord) {
   // input.addEventListener('input', compareInputToWord(word));
 
   const newWordButton = document.querySelector("#new-word-b");
-  newWordButton.addEventListener('click', selectNewWord(word, chooseWord));
+  newWordButton.addEventListener('click',
+    selectNewWord(word, chooseWord, createAlphabetSpans));
   newWordButton.dispatchEvent(new Event('click')); //dispatch first time
 
   createAlphabetSpans(word, compareInputToWord);
 
-  
+
+
+
   //====LISTENER FUNCTIONS
   function compareInputToWord(word) {
 
@@ -23,7 +26,7 @@ function addListeners(word, chooseWord) {
 
       let remainingTrialsSpan = document.querySelector("#remaining-trials>span");
 
-      this.removeEventListener('click', innerListen);
+      this.removeEventListener('click', innerListen);//this === span
 
       //if letter is not in string, decrease remaining trials and change color to red
       if (!word.single.includes(letter)) {
@@ -55,7 +58,7 @@ function addListeners(word, chooseWord) {
   }
 
 
-  function selectNewWord(word, chooseWord) {
+  function selectNewWord(word, chooseWord, createAlphabetSpans) {
 
     return function () {
 
@@ -102,7 +105,7 @@ function addListeners(word, chooseWord) {
     for (let i = 0; i < ALPHABET.length; i++) {
       const span = document.createElement('span');
 
-      //insert break every 5, not on the first (i!==0) or on the last (ALPHABET[last])
+      //UNUSED - using flexbox - insert break every 5, not on the first (i!==0) or on the last (ALPHABET[last])
       if (i % 5 === 0 && i !== 0 && (i !== ALPHABET.length - 1)) {
         // alphabetDiv.innerHTML += '<br>';//something with the breaks does not allow adding listeners
       }
@@ -112,6 +115,45 @@ function addListeners(word, chooseWord) {
 
     }
   }
+
+  function apiParams(word, chooseWord, createAlphabetSpans, selectNewWord) {
+
+    let selectDifficulty = document.querySelector('#difficulty');
+    let selectMinLength = document.querySelector('#min-length');
+    let selectMaxLength = document.querySelector('#max-length');
+
+    let sectionParams = document.querySelector('#params');
+
+    sectionParams.addEventListener('change', evt => {
+      console.log(selectDifficulty.value,
+        selectMinLength.value, selectMaxLength.value);
+      fetchDataAndUpdate(
+        parseInt(selectDifficulty.value),
+        parseInt(selectMinLength.value),
+        parseInt(selectMaxLength.value));
+    });
+
+    function fetchDataAndUpdate(difficulty, minLength, maxLength) {
+      //should update
+      return fetch(`/words/${difficulty}/${minLength}/${maxLength}`)
+        .then(function (response) {
+          if (response.ok) {
+            // console.log(typeof response)
+            return response.json();//a promise, convert to object
+          }
+        })
+        .then(bodyAsJson => {
+
+          //may have to restructure so that gui loads before all the response
+          //====Starts game after receiving array
+          selectNewWord(bodyAsJson);// passes as ALL_WORDS
+          // console.log(typeof bodyAsJson);// passes as ALL_WORDS
+        })
+        .catch(error => console.log('ERROR: \n', error));
+    }
+
+  }
+
 }
 
 /*

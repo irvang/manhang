@@ -5,7 +5,9 @@
     //difficulty 1-10
     // minLength 3-12
     // maxLength 3-12
-    fetchData(1, 0, 50);
+    fetchDataAndStart(1, 0, 50);
+
+    // apiParams();
 
 }());
 
@@ -13,25 +15,23 @@
 Fetch data receives 3 numbers: difficulty, minLength, maxLength
 These are the parameters that are to be the query string on the server side
 */
-function fetchData(difficulty, minLength, maxLength) {
+function fetchDataAndStart(difficulty, minLength, maxLength) {
     // fetch('../words.txt') //faster for testing purposes
     return fetch(`/words/${difficulty}/${minLength}/${maxLength}`)
         .then(function (response) {
             if (response.ok) {
-                console.log(typeof response)
+                // console.log(typeof response)
                 return response.json();//a promise, convert to object
-            } 
+            }
         })
         .then(bodyAsJson => {
 
             //may have to restructure so that gui loads before all the response
             //====Starts game after receiving array
             startGame(bodyAsJson);// passes as ALL_WORDS
-            console.log(typeof bodyAsJson);// passes as ALL_WORDS
+            // console.log(typeof bodyAsJson);// passes as ALL_WORDS
         })
-        .catch(function (error) {
-            console.log('ERROR: \n', error);
-        });
+        .catch(error => console.log('ERROR: \n', error));
 }
 
 function startGame(ALL_WORDS) {
@@ -55,3 +55,26 @@ function startGame(ALL_WORDS) {
     //====ADD LISTENERS
     addListeners(word, chooseWord);
 }
+
+
+// function apiParams() {
+//     let selectDifficulty = document.querySelector('#difficulty');
+//     let selectMinLength = document.querySelector('#min-length');
+//     let selectMaxLength = document.querySelector('#max-length');
+
+//     let sectionParams = document.querySelector('#params');
+
+//     sectionParams.addEventListener('change', evt => {
+//       console.log(selectDifficulty.value,
+//         selectMinLength.value, selectMaxLength.value);
+//       fetchDataAndStart(
+//         parseInt(selectDifficulty.value),
+//         parseInt(selectMinLength.value),
+//         parseInt(selectMaxLength.value));
+//     });
+
+//         //difficulty 1-10
+//     // minLength 3-12
+//     // maxLength 3-12
+//     fetchDataAndStart(1, 0, 50);
+//   }
