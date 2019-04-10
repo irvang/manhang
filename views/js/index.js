@@ -56,25 +56,3 @@ function startGame(ALL_WORDS) {
     addListeners(word, chooseWord);
 }
 
-
-// function apiParams() {
-//     let selectDifficulty = document.querySelector('#difficulty');
-//     let selectMinLength = document.querySelector('#min-length');
-//     let selectMaxLength = document.querySelector('#max-length');
-
-//     let sectionParams = document.querySelector('#params');
-
-//     sectionParams.addEventListener('change', evt => {
-//       console.log(selectDifficulty.value,
-//         selectMinLength.value, selectMaxLength.value);
-//       fetchDataAndStart(
-//         parseInt(selectDifficulty.value),
-//         parseInt(selectMinLength.value),
-//         parseInt(selectMaxLength.value));
-//     });
-
-//         //difficulty 1-10
-//     // minLength 3-12
-//     // maxLength 3-12
-//     fetchDataAndStart(1, 0, 50);
-//   }
