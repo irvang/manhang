@@ -1,5 +1,5 @@
 import alphabetSpansListeners from './alphabetSpansListeners.js';
-import drawCanvas from './drawCanvas.js';
+import {drawCanvas, createPole} from './drawCanvas.js';
 
 import words from './words.js';
 
@@ -25,6 +25,7 @@ export default function selectNewWord() {
 
   // clear canvas
   drawCanvas(words.remainingTrials);
+  createPole();
 
   alphabetSpansListeners(); //add listeners that may have been removed
 

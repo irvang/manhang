@@ -1,55 +1,86 @@
-let canvas = document.getElementById('canvas-hang');
+const canvas = document.getElementById('canvas-hang');
+const ctx = canvas.getContext('2d');
 
-function drawCanvas(aNumber) {
+/* 
+
+See https://en.wikipedia.org/wiki/Hangman_(game) for diagram as well
+*/
+
+export function createPole() {
+
+
+  ctx.beginPath();
+  ctx.strokeStyle = 'blue';
+  //body
+  ctx.moveTo(40, 25);
+  ctx.lineTo(40, 100);
+
+  ctx.lineTo(10, 145);
+  ctx.moveTo(40, 100);
+
+  ctx.lineTo(70, 145);
+
+  ctx.moveTo(40, 25);
+  ctx.lineTo(105, 10);
+
+  ctx.lineTo(105, 55);
+
+  ctx.stroke();
+}
+
+
+// createPole();
+
+export function drawCanvas(aNumber) {
+  createPole();
   if (canvas.getContext) {
-    var ctx = canvas.getContext('2d');
-
     switch (aNumber) {
       case 6:
         // clear canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         break;
-      case 5:
+        case 5:
+        //head
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(105, 65, 10, 0, Math.PI * 2, true); // Outer circle
+        ctx.stroke();
+        break;
+
+      case 4:
         ctx.beginPath();
         ctx.strokeStyle = 'blue';
         //body
-        ctx.moveTo(75, 75);
-        ctx.lineTo(75, 100);
+        ctx.moveTo(105, 75);
+        ctx.lineTo(105, 100);
         ctx.stroke();
         break;
-      case 4:
+        case 3:
+        //right arm
         ctx.beginPath();
-        //right leg
-        ctx.moveTo(75, 100);
-        ctx.lineTo(100, 125);
-        ctx.stroke();
-        break;
-      case 3:
-        //left leg
-        ctx.beginPath();
-        ctx.moveTo(75, 100);
-        ctx.lineTo(50, 125);
+        ctx.moveTo(105, 75);
+        ctx.lineTo(125, 100);
         ctx.stroke();
         break;
       case 2:
-        //right arm
         ctx.beginPath();
-        ctx.moveTo(75, 75);
-        ctx.lineTo(95, 100);
+        //left arm
+        ctx.moveTo(105, 75);
+        ctx.lineTo(85, 100);
         ctx.stroke();
         break;
       case 1:
         ctx.beginPath();
-        //left arm
-        ctx.moveTo(75, 75);
-        ctx.lineTo(55, 100);
+        //right leg
+        ctx.moveTo(105, 100);
+        ctx.lineTo(130, 125);
         ctx.stroke();
         break;
       case 0:
-        //head
-        ctx.stroke();
+        //left leg
         ctx.beginPath();
-        ctx.arc(75, 50, 25, 0, Math.PI * 2, true); // Outer circle
+        ctx.moveTo(105, 100);
+        ctx.lineTo(80, 125);
         ctx.stroke();
         break;
     }
@@ -57,7 +88,9 @@ function drawCanvas(aNumber) {
 }
 
 
-export default drawCanvas;
+// export  drawCanvas;
+// export createPole;
+
 
 
 

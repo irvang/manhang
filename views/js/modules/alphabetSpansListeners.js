@@ -1,7 +1,7 @@
 // import compareInputToWord from './compareInputToWord.js';
 
 import words from './words.js';
-import drawCanvas from './drawCanvas.js';
+import {drawCanvas} from './drawCanvas.js';
 
 /* 
 Adds listeners to spans
