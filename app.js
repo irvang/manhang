@@ -2,27 +2,30 @@
 App deployed in heroku here: https://manhang-irv.herokuapp.com/
 */
 
-//====PORT
+
 const fetch = require('node-fetch');
 const express = require('express')
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const auth = require('./routes/auth');
-
-const users = require('./routes/users');
-const app = express();
-
-const dbConfig = require('./config/config-index');
-
-const PORT = process.env.PORT || 3000;
-
 const config = require('config');
 
+const app = express();
+
+//====CUSTOM MODULES
+const auth = require('./routes/auth');
+const users = require('./routes/users');
+const dbConfig = require('./dbConfig/config-index');
+
+//====PORT
+const PORT = process.env.PORT || 3000;
+console.log(config.get('jwtPrivateKey'))
+
+console.log(process.env)
 if (!config.get('jwtPrivateKey')) {
   console.error('FATAL ERROR: jwtPrivateKey is not defined.');
   process.exit(1);
 }
-// console.log(process)
+
 app.use(bodyParser.json())
 app.use('/', express.static('views'))
 
@@ -77,7 +80,7 @@ function getShortestAndLongest(wordArray) {
 }
 
 //====MONGOOSE CONNECTION
-mongoose.connect(dbConfig.getDbConnectionString(),{ useNewUrlParser: true });//returns string
+mongoose.connect(dbConfig.getDbConnectionString(), { useNewUrlParser: true });//returns string
 
 //====SERVER CONNECTION
 app.listen(PORT, function () {
@@ -85,22 +88,22 @@ app.listen(PORT, function () {
 });
 
 
-const OxfordDictionary = require('./controllers/oxford-api.js')();
+// const OxfordDictionary = require('./controllers/oxford-api.js')();
 
 // OxfordDictionary();
 
 
 //====UNUSED 
-app.get('/words', function (req, res, next) {
+// app.get('/words', function (req, res, next) {
 
-  /* To use the different queries in api: http://app.linkedin-reach.io/words?difficulty=1&minLength=3&maxLength=5 etc...*/
+//   /* To use the different queries in api: http://app.linkedin-reach.io/words?difficulty=1&minLength=3&maxLength=5 etc...*/
 
-  fetch('http://app.linkedin-reach.io/words')
-    // fetch('/words.txt')
-    .then(res => res.text())
-    .then(body => {
-      // res.render("index", { word_data: body })
-      res.send(body)
-    });
+//   fetch('http://app.linkedin-reach.io/words')
+//     // fetch('/words.txt')
+//     .then(res => res.text())
+//     .then(body => {
+//       // res.render("index", { word_data: body })
+//       res.send(body)
+//     });
 
-});
+// });

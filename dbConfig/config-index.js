@@ -1,4 +1,4 @@
-const userInfo = require('./config');
+const userInfo = require('./config'); //config.js : {userName, password}
 
 module.exports = {
   getDbConnectionString: function () {
