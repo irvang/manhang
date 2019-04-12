@@ -7,9 +7,9 @@ function findWordOxford() {
   var app_key = "fd07bff2c06f70752c2a3ee36a3c5bab";
   var dict = new Dictionary(app_id, app_key);
   // console.log(dict)
-  dict.find("wetter/definitions", function (error, data) {
+  dict.find("giaours/definitions", function (error, data) {
     // dict.find("ace", function (error, data) {
-    if (error) return console.log("ERROR", error);
+    if (error) return console.log("ERROR:", error);
     console.log(data);
 
     data.results[0].lexicalEntries.forEach((lexicalEntry, i, arr) => {
