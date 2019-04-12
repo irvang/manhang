@@ -1,0 +1,1 @@
+See joi-password-complexity, it sets requirements for password

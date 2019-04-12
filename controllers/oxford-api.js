@@ -1,11 +1,11 @@
 
-var Dictionary = require("oxford-dictionary-api");
+const Dictionary = require("oxford-dictionary-api");
 
 function findWordOxford() {
 
-  var app_id = "1173d420";
-  var app_key = "fd07bff2c06f70752c2a3ee36a3c5bab";
-  var dict = new Dictionary(app_id, app_key);
+  const app_id = "1173d420";
+  const app_key = "fd07bff2c06f70752c2a3ee36a3c5bab";
+  const dict = new Dictionary(app_id, app_key);
   // console.log(dict)
   dict.find("giaours/definitions", function (error, data) {
     // dict.find("ace", function (error, data) {

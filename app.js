@@ -6,13 +6,20 @@ App deployed in heroku here: https://manhang-irv.herokuapp.com/
 const fetch = require('node-fetch');
 const express = require('express')
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
-const app = express()
+const users = require('./routes/users');
+const app = express();
+
+const config = require('./config/config-index');
 
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json())
 app.use('/', express.static('views'))
+
+// route to users router
+app.use('/api/users', users);
 
 // https://github.com/expressjs/express/wiki#template-engines
 
@@ -60,12 +67,16 @@ function getShortestAndLongest(wordArray) {
   return { "shortestLengthInArray": min, "longestLengthInArray": max };
 }
 
+//====MONGOOSE CONNECTION
+mongoose.connect(config.getDbConnectionString());//returns string
+
+//====SERVER CONNECTION
 app.listen(PORT, function () {
   console.log('Server listening on port ' + PORT);
 });
 
 
-const OxfordDictionary = require('./app-js/oxford-api.js')();
+const OxfordDictionary = require('./controllers/oxford-api.js')();
 
 // OxfordDictionary();
 
