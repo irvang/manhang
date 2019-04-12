@@ -2,17 +2,25 @@
 App deployed in heroku here: https://manhang-irv.herokuapp.com/
 */
 
-//====PORT
+
 const fetch = require('node-fetch');
 const express = require('express')
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const app = express();
 
-const app = express()
+//====CUSTOM MODULES
+const users = require('./routes/users');
+const dbConfig = require('./dbConfig/config-index');
 
+//====PORT
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json())
-app.use('/', express.static('views'))
+app.use('/', express.static('views'));
+
+//====ROUTER
+app.use('/api/user', users);
 
 // https://github.com/expressjs/express/wiki#template-engines
 
@@ -45,27 +53,17 @@ app.get('/words/:difficulty/:minLength/:maxLength', function (req, res, next) {
     .catch(err => console.error('\n ERROR in catch:\n', err));
 });
 
-/* Returns longest and shortest word lengths in array.
-Needs input as array, not as JSON.
-Used only for testing purposes.   */
-function getShortestAndLongest(wordArray) {
 
-  let min = wordArray[0].length, max = wordArray[0].length;
+//====MONGOOSE CONNECTION
+mongoose.connect(dbConfig.getDbConnectionString(), { useNewUrlParser: true });//returns string
 
-  for (let i = 0; i < wordArray.length; i++) {
-    if (wordArray[i].length < min) min = wordArray[i].length;
-    if (wordArray[i].length > max) max = wordArray[i].length;
-  }
-
-  return { "shortestLengthInArray": min, "longestLengthInArray": max };
-}
-
+//====SERVER CONNECTION
 app.listen(PORT, function () {
   console.log('Server listening on port ' + PORT);
 });
 
 
-const OxfordDictionary = require('./app-js/oxford-api.js')();
+// const OxfordDictionary = require('./app-js/oxford-api.js')();
 
 // OxfordDictionary();
 
@@ -84,3 +82,18 @@ app.get('/words', function (req, res, next) {
     });
 
 });
+
+/* Returns longest and shortest word lengths in array.
+Needs input as array, not as JSON.
+Used only for testing purposes.   */
+function getShortestAndLongest(wordArray) {
+
+  let min = wordArray[0].length, max = wordArray[0].length;
+
+  for (let i = 0; i < wordArray.length; i++) {
+    if (wordArray[i].length < min) min = wordArray[i].length;
+    if (wordArray[i].length > max) max = wordArray[i].length;
+  }
+
+  return { "shortestLengthInArray": min, "longestLengthInArray": max };
+}
