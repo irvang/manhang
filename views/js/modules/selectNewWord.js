@@ -1,11 +1,12 @@
 import alphabetSpansListeners from './alphabetSpansListeners.js';
-import {drawCanvas, createPole} from './drawCanvas.js';
+import { drawCanvas, createPole } from './drawCanvas.js';
 
 import words from './words.js';
 
 /* 
 Used in startGameAddListeners.js and apiParamsListeners.js
 */
+
 export default function selectNewWord() {
 
   words.single = words.ALL_WORDS[Math.floor(Math.random() * words.ALL_WORDS.length)];
@@ -33,12 +34,28 @@ export default function selectNewWord() {
 
   const alphabetSpans = document.querySelectorAll('div.alphabet span');
 
+  //remove colors from displayed alphabet
   for (let i = 0; i < alphabetSpans.length; i++) {
-    alphabetSpans[i].style = "background-color: '', color: black ";
+    alphabetSpans[i].style = "background-color: '', color: black";
   }
 
+  if (words.isFinished && words.isWon) {
+    /* keep score, flags should set to false, so if a person 
+    presses new word before winning, its score is reset */
+    words.isFinished = false;
+    words.isWon = false;
+    //keep score
+
+    console.log('keeping score')
+  } else {
+    /* if game is not finished, or if game has finished but lost, set score to 0, all flags to false */
+    words.isFinished = false;
+    words.isWon = false;
+    words.consecutiveWins = 0;//reset score
+    console.log('resetting score')
+  }
 
   console.log('word: ' + words.single);
   //check length is same as blanks
-  console.log('lenght equal:', words.revealed.length === words.single.length);
+  // console.log('lenght equal:', words.revealed.length === words.single.length);
 }

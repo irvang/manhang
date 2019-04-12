@@ -1,13 +1,11 @@
-const canvas = document.getElementById('canvas-hang');
-const ctx = canvas.getContext('2d');
-
 /* 
-
 See https://en.wikipedia.org/wiki/Hangman_(game) for diagram as well
 */
 
-export function createPole() {
+const canvas = document.getElementById('canvas-hang');
+const ctx = canvas.getContext('2d');
 
+export function createPole() {
 
   ctx.beginPath();
   ctx.strokeStyle = 'blue';
@@ -28,18 +26,15 @@ export function createPole() {
   ctx.stroke();
 }
 
+export function drawCanvas(remainingTrials) {
 
-// createPole();
-
-export function drawCanvas(aNumber) {
-  createPole();
   if (canvas.getContext) {
-    switch (aNumber) {
+    switch (remainingTrials) {
       case 6:
         // clear canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         break;
-        case 5:
+      case 5:
         //head
         ctx.stroke();
         ctx.beginPath();
@@ -55,7 +50,7 @@ export function drawCanvas(aNumber) {
         ctx.lineTo(105, 100);
         ctx.stroke();
         break;
-        case 3:
+      case 3:
         //right arm
         ctx.beginPath();
         ctx.moveTo(105, 75);
@@ -88,18 +83,12 @@ export function drawCanvas(aNumber) {
 }
 
 
-// export  drawCanvas;
-// export createPole;
-
-
-
-
 function draw2() {
   var canvas = document.getElementById('canvas-hang');
   if (canvas.getContext) {
     var ctx = canvas.getContext('2d');
 
-    switch (aNumber) {
+    switch (remainingTrials) {
       case 5:
         ctx.beginPath();
         ctx.strokeStyle = 'blue';

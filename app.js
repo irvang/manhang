@@ -42,8 +42,7 @@ app.get('/words/:difficulty/:minLength/:maxLength', function (req, res, next) {
 
       res.send(ALL_WORDS)
     })
-    .catch(err => console.error('\n ERROR in catch:\n', err))
-
+    .catch(err => console.error('\n ERROR in catch:\n', err));
 });
 
 /* Returns longest and shortest word lengths in array.
@@ -64,6 +63,11 @@ function getShortestAndLongest(wordArray) {
 app.listen(PORT, function () {
   console.log('Server listening on port ' + PORT);
 });
+
+
+const OxfordDictionary = require('./app-js/oxford-api.js')();
+
+// OxfordDictionary();
 
 
 //====UNUSED 
