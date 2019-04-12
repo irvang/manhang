@@ -1,1 +1,3 @@
 See joi-password-complexity, it sets requirements for password
+
+Secret, private key, only available on the server
