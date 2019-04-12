@@ -7,15 +7,22 @@ const fetch = require('node-fetch');
 const express = require('express')
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const auth  = require('./routes/auth');
+const auth = require('./routes/auth');
 
 const users = require('./routes/users');
 const app = express();
 
-const config = require('./config/config-index');
+const dbConfig = require('./config/config-index');
 
 const PORT = process.env.PORT || 3000;
 
+const config = require('config');
+
+if (!config.get('jwtPrivateKey')) {
+  console.error('FATAL ERROR: jwtPrivateKey is not defined.');
+  process.exit(1);
+}
+// console.log(process)
 app.use(bodyParser.json())
 app.use('/', express.static('views'))
 
@@ -70,7 +77,7 @@ function getShortestAndLongest(wordArray) {
 }
 
 //====MONGOOSE CONNECTION
-mongoose.connect(config.getDbConnectionString());//returns string
+mongoose.connect(dbConfig.getDbConnectionString(),{ useNewUrlParser: true });//returns string
 
 //====SERVER CONNECTION
 app.listen(PORT, function () {
