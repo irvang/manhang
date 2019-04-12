@@ -7,6 +7,7 @@ const fetch = require('node-fetch');
 const express = require('express')
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const auth  = require('./routes/auth');
 
 const users = require('./routes/users');
 const app = express();
@@ -20,6 +21,7 @@ app.use('/', express.static('views'))
 
 // route to users router
 app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 // https://github.com/expressjs/express/wiki#template-engines
 
