@@ -2,6 +2,7 @@ import alphabetSpansListeners from './alphabetSpansListeners.js';
 import { drawCanvas, createPole } from './drawCanvas.js';
 
 import words from './words.js';
+import { clearDefinitionsSection } from './fetchDefinition.js';
 
 /* 
 Used in startGameAddListeners.js and apiParamsListeners.js
@@ -27,6 +28,8 @@ export default function selectNewWord() {
   // clear canvas
   drawCanvas(words.remainingTrials);
   createPole();
+
+  clearDefinitionsSection();
 
   alphabetSpansListeners(); //add listeners that may have been removed
 

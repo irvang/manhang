@@ -35,18 +35,18 @@ router.get('/oxford/:word', (req, res) => {
     })
 
     //keep only 3 results
-    definitions.splice(3);
+    definitions.splice(2);
 
-    res.status(200).send({ provider, definitions })
+    res.status(200).send({ provider, definitions, word })
   });
 });
 
 router.get('/merrian/:word', (req, res) => {
   const { word } = req.params;
-// function searchMerrian(word) {
+
   fetch(`https://dictionaryapi.com/api/v3/references/learners/json/${word}?key=635e05af-8833-45d3-9f00-d033b91c32c2`)
-    // fetch('/words.txt')
-    .then(res => {
+
+  .then(res => {
 
       console.log(res.status, res.ok)
       for (x in res) {
@@ -65,12 +65,16 @@ router.get('/merrian/:word', (req, res) => {
         if (elm.shortdef) definitions.push(elm.shortdef[0]);
       });
 
-      definitions.splice(3);
+      definitions.splice(2);
 
       if(!definitions[0]) {
-        res.status(204).send({definitions: "no definition found"})
+        res.status(200).send({
+          provider: '',
+          definitions: ['No definition found'], 
+          word
+        })
       } else {
-        res.send({ provider: "MERRIAM-WEBSTER ONLINE", definitions });
+        res.status(200).send({ provider: "MERRIAM-WEBSTER ONLINE", definitions, word });
       }
       console.log(definitions[0]);
     })
