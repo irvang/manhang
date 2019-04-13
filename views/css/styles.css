@@ -7,6 +7,9 @@ body, html {
     font-family: "Gill Sans", sans-serif;
 }
 
+* {
+    border: 1px dashed orange;
+}
 main * {
     line-height: 1.5rem;
     color: black;
@@ -16,11 +19,8 @@ main * {
     margin: 1px;
 }
 
-main.center-screen {}
-
-/* https://stackoverflow.com/questions/31217268/center-div-on-the-middle-of-screen */
-
 .center-screen {
+    /* https://stackoverflow.com/questions/31217268/center-div-on-the-middle-of-screen */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,6 +31,14 @@ main.center-screen {}
     /* border: 1px solid red; */
     margin: 0 auto;
     max-width: 600px;
+}
+
+#word-display {
+    font-size: 1.7rem;
+    margin: 15px;
+}
+#remaining-trials {
+    margin: 0 auto;
 }
 
 #params {
@@ -44,11 +52,16 @@ main.center-screen {}
     /* border: 1px solid red; */
     margin: 0 auto;
     max-width: 600px;
+    justify-content: space-evenly;
 }
 
-#params >div {
+#params>div {
     display: flex;
     flex-direction: column;
+}
+
+#params label {
+    margin-bottom: 0.2rem;
 }
 
 /* main>input {
@@ -65,7 +78,7 @@ div.alphabet span {
     /* letter-spacing: .5rem; */
     margin: 0.15rem;
     /* override padding from 'main *' rule */
-    padding: 0 0.3rem; 
+    padding: 0 0.3rem;
     text-align: center;
     border: 1px solid #2196f3;
     border-radius: 10px;
@@ -89,8 +102,10 @@ div.alphabet span {
     /* no wrap*/
     flex-flow: row;
     align-items: center;
+    /* max-width: 270px; */
     justify-content: space-around;
-    max-width: 270px;
+    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .alphabet>div>span {
