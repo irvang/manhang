@@ -2,14 +2,16 @@
 let controller = new AbortController();
 let signal = controller.signal;
 
+
 export default function (word) {
   return fetch(`/api/dictionaries/oxford/${word}`)
     .then(function (response) {
-      console.log("response:", response)
 
       //if word is found, status will be 200
       if (response.status === 200) {
         return response.json();//a promise, convert to object
+      } else {
+        console.log('requesting merrian')
       }
     })
     .then(bodyAsJson => {
@@ -26,7 +28,7 @@ export default function (word) {
 
 const definitionsSection = document.querySelector('section.definitions');
 const definitionH3 = document.createElement('h3');
-const definitionUl = document.createElement('ul');
+const definitionUl = document.createElement('ol');
 const definitionsDiv = document.createElement('div');
 
 function showDefinition(bodyAsJson) {
@@ -38,6 +40,7 @@ function showDefinition(bodyAsJson) {
   definitions.forEach((elm, i) => {
     definitionUl.innerHTML += `<li>${elm}</li>`;
   });
+  console.log(definitionUl)
 
   // source if there is a provider
   if (provider) { definitionsDiv.innerHTML = "Source: " + provider; }
@@ -59,7 +62,7 @@ export function clearDefinitionsSection() {
   definitionsDiv.innerHTML = '';
 }
 
-
+//NOW UNUSED, REDIRECTING ON SERVER
 function requestMerrian(word) {
   return fetch(`/api/dictionaries/merrian/${word}`)
     .then(function (response) {
