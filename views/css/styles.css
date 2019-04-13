@@ -46,6 +46,11 @@ main.center-screen {}
     max-width: 600px;
 }
 
+#params >div {
+    display: flex;
+    flex-direction: column;
+}
+
 /* main>input {
     background-color: greenyellow;
 } */

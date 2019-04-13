@@ -3,22 +3,13 @@ let controller = new AbortController();
 let signal = controller.signal;
 
 export default function (word) {
-  return fetch(`/api/dictionaries/oxford/${word}`, {
-    signal: signal
-  })
+  return fetch(`/api/dictionaries/oxford/${word}`)
     .then(function (response) {
       console.log("response:", response)
 
-      //if word is found, will be 200, else will be 204
+      //if word is found, status will be 200
       if (response.status === 200) {
         return response.json();//a promise, convert to object
-      } else {
-        console.log('requesting merrian')
-        // return response.json();//a promise, convert to object
-        requestMerrian(word);
-
-        // controller.abort();
-        // console.log('aborted:', signal.aborted);
       }
     })
     .then(bodyAsJson => {
@@ -28,14 +19,46 @@ export default function (word) {
 
     })
     .catch(error => {
-      if (error.name == 'AbortError') { // handle abort()
-        console.error("Aborted!", error);
-      } else {
-        // throw err;
-        console.log('ERROR: \n', error)
-      }
-    })
+      if (error) console.log(error);
+    });
 }
+
+
+const definitionsSection = document.querySelector('section.definitions');
+const definitionH3 = document.createElement('h3');
+const definitionUl = document.createElement('ul');
+const definitionsDiv = document.createElement('div');
+
+function showDefinition(bodyAsJson) {
+  console.log('bodyAsJson line 60', bodyAsJson)
+  const { provider, definitions, word } = bodyAsJson;
+
+  definitionH3.innerHTML = word + ":";
+
+  definitions.forEach((elm, i) => {
+    definitionUl.innerHTML += `<li>${elm}</li>`;
+  });
+
+  // source if there is a provider
+  if (provider) { definitionsDiv.innerHTML = "Source: " + provider; }
+
+  definitionsSection.innerHTML += definitionH3.innerHTML;
+  definitionsSection.innerHTML += definitionUl.innerHTML;
+  definitionsSection.innerHTML += definitionsDiv.innerHTML;
+
+  console.log(provider, definitions);
+}
+
+export function clearDefinitionsSection() {
+
+  //clear div and each of the elements
+  definitionsSection.innerHTML = `<p> </p>`;
+
+  definitionH3.innerHTML = '';
+  definitionUl.innerHTML = '';
+  definitionsDiv.innerHTML = '';
+}
+
 
 function requestMerrian(word) {
   return fetch(`/api/dictionaries/merrian/${word}`)
@@ -65,38 +88,4 @@ function requestMerrian(word) {
       showDefinition(bodyAsJson);
     })
     .catch(error => console.log('ERROR: \n', error));
-}
-
-const definitionsSection = document.querySelector('section.definitions');
-const definitionH3 = document.createElement('h3');
-const definitionUl = document.createElement('ul');
-const definitionsDiv = document.createElement('div');
-
-function showDefinition(bodyAsJson) {
-  console.log('bodyAsJson line 60', bodyAsJson)
-  const { provider, definitions, word } = bodyAsJson;
-
-  definitionH3.innerHTML = word + ":";
-
-  definitions.forEach((elm, i) => {
-    definitionUl.innerHTML += `<li>${elm}</li>`;
-  });
-
-  if (provider) { definitionsDiv.innerHTML = "Source: " + provider; }
-
-  definitionsSection.innerHTML += definitionH3.innerHTML;
-  definitionsSection.innerHTML += definitionUl.innerHTML;
-  definitionsSection.innerHTML += definitionsDiv.innerHTML;
-
-  console.log(provider, definitions);
-}
-
-export function clearDefinitionsSection() {
-
-  //clear div and each of the elements
-  definitionsSection.innerHTML = `<p> </p>`;
-
-  definitionH3.innerHTML = '';
-  definitionUl.innerHTML = '';
-  definitionsDiv.innerHTML = '';
 }
