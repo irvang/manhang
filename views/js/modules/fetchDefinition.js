@@ -3,13 +3,11 @@ let controller = new AbortController();
 let signal = controller.signal;
 
 
-// perhaps redirect inside of express
 export default function (word) {
   return fetch(`/api/dictionaries/oxford/${word}`, {
     signal: signal
   })
     .then(function (response) {
-      console.log("response:", response)
 
       //if word is found, will be 200, else will be 204
       if (response.status === 200) {
@@ -37,7 +35,7 @@ export default function (word) {
 
 const definitionsSection = document.querySelector('section.definitions');
 const definitionH3 = document.createElement('h3');
-const definitionUl = document.createElement('ul');
+const definitionUl = document.createElement('ol');
 const definitionsDiv = document.createElement('div');
 
 function showDefinition(bodyAsJson) {
@@ -49,6 +47,7 @@ function showDefinition(bodyAsJson) {
   definitions.forEach((elm, i) => {
     definitionUl.innerHTML += `<li>${elm}</li>`;
   });
+  console.log(definitionUl)
 
   if (provider) { definitionsDiv.innerHTML = "Source: " + provider; }
 
