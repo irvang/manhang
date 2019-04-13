@@ -8,8 +8,8 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+
 </head>
 
 <body>
@@ -41,71 +41,77 @@
 
         <canvas id="canvas-hang" width="150" height="150" style="border:1px solid #000000;"></canvas>
 
+
+    </main>
+
+    <section class="main-2">
         <button id="new-word-b">New word</button>
 
         <p id="remaining-trials">Remaining trials: <span>6</span></p>
-    </main>
 
-    <section id="params">
-        <div>
-            <label for="difficulty">Difficulty</label>
-            <select name="difficulty" id="difficulty">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select>
-        </div>
+        <section id="params">
+            <div>
+                <label for="difficulty">Difficulty</label>
+                <select name="difficulty" id="difficulty">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
 
-        <div>
-            <label for="min-length">Min length</label>
-            <select name="min-length" id="min-length">
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <!-- <option value="13">13</option> -->
-            </select>
-        </div>
+            <div>
+                <label for="min-length">Min length</label>
+                <select name="min-length" id="min-length">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <!-- <option value="13">13</option> -->
+                </select>
+            </div>
 
-        <div>
-            <label for="max-length">Max length</label>
-            <select name="max-length" id="max-length">
-                <!-- <option value="1">1</option> -->
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12" selected>12</option>
-                <!-- <option value="13" selected>13</option>
-                <option value="14" selected>14</option> -->
-            </select>
-        </div>
+            <div>
+                <label for="max-length">Max length</label>
+                <select name="max-length" id="max-length">
+                    <!-- <option value="1">1</option> -->
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12" selected>12</option>
+                    <!-- <option value="13" selected>13</option>
+                            <option value="14" selected>14</option> -->
+                </select>
+            </div>
+
+        </section>
+
+        <section class="definitions">
+            <!-- HOLDS WORDS DEFINITIONS -->
+        </section>
 
     </section>
 
-    <section class="definitions">
-        <!-- HOLDS WORDS DEFINITIONS -->
-    </section>
 
     <script type="module" src="js/index.js"></script>
 </body>

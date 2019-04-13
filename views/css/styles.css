@@ -1,5 +1,5 @@
 body, html {
-    background-color: #f5f5f5;
+    /* background-color: #f5f5f5; */
     box-sizing: border-box;
     margin: 1%;
     font-size: 26px;
@@ -7,9 +7,24 @@ body, html {
     font-family: "Gill Sans", sans-serif;
 }
 
-* {
-    border: 1px dashed orange;
+body {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;/* direction wrap*/
+    /* align-content: space-evenly; */
 }
+
+body>* {
+    /* Main and section */
+    flex: 1 1 260px;
+    /* width: 40%; */
+    /* max-width: 40%; */
+}
+
+* {
+    /* border: 1px dashed orange; */
+}
+
 main * {
     line-height: 1.5rem;
     color: black;
@@ -19,24 +34,31 @@ main * {
     margin: 1px;
 }
 
-.center-screen {
+.center-screen, .main-2 {
     /* https://stackoverflow.com/questions/31217268/center-div-on-the-middle-of-screen */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: center; */
     text-align: center;
-    min-height: 50vh;
     font-size: 1rem;
+    max-width: 400px;
+    
+    /* justify-content: center; */
+    /* min-height: 50vh; */
     /* border: 1px solid red; */
-    margin: 0 auto;
-    max-width: 600px;
+    /* margin: 0 auto; */
+}
+
+section.main-2 > * {
+    /* top-bottom right-left */
+    padding: 15px 0;
 }
 
 #word-display {
     font-size: 1.7rem;
     margin: 15px;
 }
+
 #remaining-trials {
     margin: 0 auto;
 }
@@ -44,13 +66,13 @@ main * {
 #params {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+
+    /* align-items: center; */
     text-align: center;
     min-height: 5vh;
     font-size: 0.6rem;
     /* border: 1px solid red; */
-    margin: 0 auto;
+    /* margin: 0 auto; */
     max-width: 600px;
     justify-content: space-evenly;
 }
@@ -67,11 +89,24 @@ main * {
 /* main>input {
     background-color: greenyellow;
 } */
+section.definitions {
+    font-size: 0.7rem;
+    text-align: start;
+    padding-top: 25px;
+    /* margin-top: 10px; */
+}
+section.definitions > *{
+   margin: 0;
+   margin-bottom: 10px;
+}
 
 #new-word-b {
     background-color: greenyellow;
     border-radius: 10px;
     color: black;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 0.8rem;
 }
 
 div.alphabet span {
@@ -101,11 +136,11 @@ div.alphabet span {
     display: flex;
     /* no wrap*/
     flex-flow: row;
-    align-items: center;
+    /* align-items: center; */
     /* max-width: 270px; */
-    justify-content: space-around;
-    justify-content: space-between;
-    justify-content: space-evenly;
+    /* justify-content: space-around; */
+    /* justify-content: space-between; */
+    /* justify-content: space-evenly; */
 }
 
 .alphabet>div>span {

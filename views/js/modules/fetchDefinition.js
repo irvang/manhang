@@ -44,7 +44,7 @@ function showDefinition(bodyAsJson) {
   console.log(definitionUl)
 
   // source if there is a provider
-  if (provider) { definitionsDiv.innerHTML = "Source: " + provider; }
+  if (provider) { definitionsDiv.innerHTML = "<b>Source:</b> " + provider; }
 
   definitionsSection.append(definitionH3);
   definitionsSection.append(definitionUl);
