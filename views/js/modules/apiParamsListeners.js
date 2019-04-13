@@ -1,7 +1,7 @@
 import selectNewWord from './selectNewWord.js';
 import words from './words.js';
 
-// UNUSED SO FAR
+
 export default function apiParamsListeners() {
   // export default function apiParamsListeners(word, chooseWord, alphabetSpansListeners, selectNewWord) {
 

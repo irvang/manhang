@@ -2,7 +2,6 @@
 App deployed in heroku here: https://manhang-irv.herokuapp.com/
 */
 
-
 const fetch = require('node-fetch');
 const express = require('express')
 const bodyParser = require('body-parser');
@@ -10,8 +9,9 @@ const mongoose = require('mongoose');
 const app = express();
 
 //====CUSTOM MODULES
-const users = require('./routes/users');
-const dictionaries = require('./routes/oxford-api');
+const usersRouter = require('./routes/users');
+const dictionariesRouter = require('./routes/oxford-api');
+const wordsRouter = require('./routes/words');
 const dbConfig = require('./dbConfig/config-index');
 
 //====PORT
@@ -21,38 +21,14 @@ app.use(bodyParser.json())
 app.use('/', express.static('views'));
 
 //====ROUTER
-app.use('/api/users', users);
-app.use('/api/dictionaries', dictionaries)
+app.use('/api/users', usersRouter);
+app.use('/api/dictionaries', dictionariesRouter)
+app.use('/words', wordsRouter)
 
 
 app.get('/', function (req, res, next) {
   res.render();
 });
-
-
-app.get('/words/:difficulty/:minLength/:maxLength', function (req, res, next) {
-
-  /* To use the different queries in api: 
-  http://app.linkedin-reach.io/words?difficulty=1&minLength=3&maxLength=5 etc...*/
-
-  const { difficulty, minLength, maxLength } = req.params;
-
-  const parameters = `difficulty=${difficulty}&minLength=${minLength}&maxLength=${maxLength}`;
-
-  // fetch('/words.txt')
-  fetch(`http://app.linkedin-reach.io/words?${parameters}`)
-    .then(res => res.text())
-    .then(body => {
-
-      // (typeof body) === string, 
-      //split by "\n" converts into an array, then into JSON
-      let ALL_WORDS = JSON.stringify(body.split('\n'));
-
-      res.send(ALL_WORDS)
-    })
-    .catch(err => console.error('\n ERROR in catch:\n', err));
-});
-
 
 //====MONGOOSE CONNECTION
 mongoose.connect(dbConfig.getDbConnectionString(), { useNewUrlParser: true });//returns string
@@ -61,11 +37,6 @@ mongoose.connect(dbConfig.getDbConnectionString(), { useNewUrlParser: true });//
 app.listen(PORT, function () {
   console.log('Server listening on port ' + PORT);
 });
-
-
-// const OxfordDictionary = require('./app-js/oxford-api.js')();
-
-// OxfordDictionary();
 
 
 //====UNUSED 

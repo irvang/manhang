@@ -2,6 +2,7 @@
 
 import words from './words.js';
 import { drawCanvas } from './drawCanvas.js';
+import fetchDefinition from './fetchDefinition.js';
 
 /* 
 Adds listeners to spans
@@ -25,7 +26,7 @@ if (!localStorage.hangmanScore) {// if undefined
   console.log('creating localStorage.hangmanScore');
   localStorage.hangmanScore = 0;
 } else {
-  console.log('localStorage.hangmanScore exists');
+  // console.log('localStorage.hangmanScore exists');
 }
 
 const remainingTrialsSpan = document.querySelector("#remaining-trials>span");
@@ -78,6 +79,8 @@ function isGameEnded() {
     // are resued after ending game, a bit sketchy ...
     remainingTrialsP.innerHTML = "You got it!<span></span>";
 
+    fetchDefinition(words.single);
+
     /* isFinished used to keep track of whether the score should increase or not
     if finished, it prevents score from increasing */
     if (!words.isFinished) {
@@ -98,6 +101,7 @@ function isGameEnded() {
   if (words.remainingTrials <= 0) {
     remainingTrialsP.innerHTML = "Game over<span></span>";
     document.querySelector('#word-display').innerText = words.single;
+    fetchDefinition(words.single);
 
     if (!words.isFinished) {
       //raise flag and do not increase

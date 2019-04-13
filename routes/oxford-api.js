@@ -3,26 +3,28 @@ var Dictionary = require("oxford-dictionary-api");
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/:word', (req, res) => {
   const app_id = "1173d420";
   const app_key = "fd07bff2c06f70752c2a3ee36a3c5bab";
   const dict = new Dictionary(app_id, app_key);
 
   let definitions = [];
-  const { word } = req.body;
+
+  const { word } = req.params;
 
   dict.find(`${word}/definitions`, function (error, data) {
-    // dict.find("ace", function (error, data) {
-    // if (error) return console.log("ERROR:", error);
-    if (error) return res.status(400).send(error);
+
+    // pretty funky, but at least I can get the response
+    if (error) {
+      return res.status(200).send({ error })
+    }
 
     console.log(data.metadata.provider);
+    const { provider } = data.metadata;
 
     data.results[0].lexicalEntries.forEach((lexicalEntry, i, arr) => {
-      // console.log('\n\n' + i, lexicalEntry.entries, '\n')      
 
       lexicalEntry.entries.forEach((entry, j, arr) => {
-        // console.log('\n\n' + i, entry.senses, '\n')
 
         entry.senses.forEach(((senses, k, arr) => {
           // console.log('\n\n' + i + " " + j + " " + k, senses.definitions[0], '\n')
@@ -33,13 +35,18 @@ router.get('/', (req, res) => {
     })
 
     //keep only 4 results
-     definitions.splice(4);
+    definitions.splice(3);
 
-    console.log(definitions)
-    res.send({ provider: data.metadata.provider, definitions })
+    res.status(200).send({ provider, definitions })
   });
-})
+});
+
+
+router.get('/:word')
 module.exports = router;
+
+
+
 
 
 
