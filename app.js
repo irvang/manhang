@@ -39,20 +39,6 @@ app.listen(PORT, function () {
 });
 
 
-//====UNUSED 
-app.get('/words', function (req, res, next) {
-
-  /* To use the different queries in api: http://app.linkedin-reach.io/words?difficulty=1&minLength=3&maxLength=5 etc...*/
-
-  fetch('http://app.linkedin-reach.io/words')
-    // fetch('/words.txt')
-    .then(res => res.text())
-    .then(body => {
-      // res.render("index", { word_data: body })
-      res.send(body)
-    });
-
-});
 
 /* Returns longest and shortest word lengths in array.
 Needs input as array, not as JSON.

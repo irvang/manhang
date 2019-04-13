@@ -1,9 +1,9 @@
-
+const fetch = require('node-fetch');
 var Dictionary = require("oxford-dictionary-api");
 const express = require('express');
 const router = express.Router();
 
-router.get('/:word', (req, res) => {
+router.get('/oxford/:word', (req, res) => {
   const app_id = "1173d420";
   const app_key = "fd07bff2c06f70752c2a3ee36a3c5bab";
   const dict = new Dictionary(app_id, app_key);
@@ -16,7 +16,7 @@ router.get('/:word', (req, res) => {
 
     // pretty funky, but at least I can get the response
     if (error) {
-      return res.status(200).send({ error })
+      return res.status(204).send({ error })
     }
 
     console.log(data.metadata.provider);
@@ -34,15 +34,50 @@ router.get('/:word', (req, res) => {
       })
     })
 
-    //keep only 4 results
+    //keep only 3 results
     definitions.splice(3);
 
     res.status(200).send({ provider, definitions })
   });
 });
 
+router.get('/merrian/:word', (req, res) => {
+  const { word } = req.params;
+// function searchMerrian(word) {
+  fetch(`https://dictionaryapi.com/api/v3/references/learners/json/${word}?key=635e05af-8833-45d3-9f00-d033b91c32c2`)
+    // fetch('/words.txt')
+    .then(res => {
 
-router.get('/:word')
+      console.log(res.status, res.ok)
+      for (x in res) {
+        // console.log(x)
+      }
+      return res.text();
+    })
+    .then(body => {
+      // res.render("index", { word_data: body })
+      // console.log(JSON.parse(body))
+      body = JSON.parse(body);
+      let definitions = []
+
+      body.forEach((elm, i, arr) => {
+        // console.log(elm.shortdef)
+        if (elm.shortdef) definitions.push(elm.shortdef[0]);
+      });
+
+      definitions.splice(3);
+
+      if(!definitions[0]) {
+        res.status(204).send({definitions: "no definition found"})
+      } else {
+        res.send({ provider: "MERRIAM-WEBSTER ONLINE", definitions });
+      }
+      console.log(definitions[0]);
+    })
+    .catch(err => console.error('\n ERROR in catch:\n', err));
+});
+
+
 module.exports = router;
 
 

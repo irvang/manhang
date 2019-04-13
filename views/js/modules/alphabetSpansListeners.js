@@ -79,11 +79,13 @@ function isGameEnded() {
     // are resued after ending game, a bit sketchy ...
     remainingTrialsP.innerHTML = "You got it!<span></span>";
 
-    fetchDefinition(words.single);
+    
 
     /* isFinished used to keep track of whether the score should increase or not
     if finished, it prevents score from increasing */
     if (!words.isFinished) {
+      fetchDefinition(words.single);
+
       //raise flag and increase
       words.isFinished = true;
       words.consecutiveWins++;
@@ -101,9 +103,11 @@ function isGameEnded() {
   if (words.remainingTrials <= 0) {
     remainingTrialsP.innerHTML = "Game over<span></span>";
     document.querySelector('#word-display').innerText = words.single;
-    fetchDefinition(words.single);
+   
 
     if (!words.isFinished) {
+      fetchDefinition(words.single);
+      
       //raise flag and do not increase
       words.isFinished = true;
       /* no updating when losing, since it would have been updated when won */
