@@ -16,7 +16,10 @@ router.get('/oxford/:word', (req, res) => {
 
     // pretty funky, but at least I can get the response
     if (error) {
-      return res.status(204).send({ error })
+      //if not on oxford, redirect to merrian
+      console.log('redirecting')
+      res.redirect(`/api/dictionaries/merrian/${word}`);
+      return;
     }
 
     console.log(data.metadata.provider);
@@ -43,10 +46,12 @@ router.get('/oxford/:word', (req, res) => {
 
 router.get('/merrian/:word', (req, res) => {
   const { word } = req.params;
+  console.log('redirected');
 
-  fetch(`https://dictionaryapi.com/api/v3/references/learners/json/${word}?key=635e05af-8833-45d3-9f00-d033b91c32c2`)
+  const merrianWebsterKey = "635e05af-8833-45d3-9f00-d033b91c32c2";
+  fetch(`https://dictionaryapi.com/api/v3/references/learners/json/${word}?key=${merrianWebsterKey}`)
 
-  .then(res => {
+    .then(res => {
 
       console.log(res.status, res.ok)
       for (x in res) {
@@ -55,28 +60,25 @@ router.get('/merrian/:word', (req, res) => {
       return res.text();
     })
     .then(body => {
-      // res.render("index", { word_data: body })
-      // console.log(JSON.parse(body))
+
       body = JSON.parse(body);
       let definitions = []
 
       body.forEach((elm, i, arr) => {
-        // console.log(elm.shortdef)
         if (elm.shortdef) definitions.push(elm.shortdef[0]);
       });
 
       definitions.splice(2);
 
-      if(!definitions[0]) {
+      if (!definitions[0]) {
         res.status(200).send({
           provider: '',
-          definitions: ['No definition found'], 
+          definitions: ['No definition found'],
           word
         })
       } else {
         res.status(200).send({ provider: "MERRIAM-WEBSTER ONLINE", definitions, word });
       }
-      console.log(definitions[0]);
     })
     .catch(err => console.error('\n ERROR in catch:\n', err));
 });
