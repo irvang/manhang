@@ -26,13 +26,14 @@ export default function (word) {
 }
 
 
-const definitionsSection = document.querySelector('section.definitions');
-const definitionH3 = document.createElement('h3');
-const definitionUl = document.createElement('ol');
-const definitionsDiv = document.createElement('div');
+let definitionsSection = document.querySelector('section.definitions');
+let definitionH3 = document.createElement('h4');
+let definitionUl = document.createElement('ol');
+let definitionsDiv = document.createElement('div');
 
 function showDefinition(bodyAsJson) {
-  console.log('bodyAsJson line 60', bodyAsJson)
+
+  definitionsSection.innerHTML = '';//clear section
   const { provider, definitions, word } = bodyAsJson;
 
   definitionH3.innerHTML = word + ":";
@@ -45,9 +46,9 @@ function showDefinition(bodyAsJson) {
   // source if there is a provider
   if (provider) { definitionsDiv.innerHTML = "Source: " + provider; }
 
-  definitionsSection.innerHTML += definitionH3.innerHTML;
-  definitionsSection.innerHTML += definitionUl.innerHTML;
-  definitionsSection.innerHTML += definitionsDiv.innerHTML;
+  definitionsSection.append(definitionH3);
+  definitionsSection.append(definitionUl);
+  definitionsSection.append(definitionsDiv);
 
   console.log(provider, definitions);
 }
