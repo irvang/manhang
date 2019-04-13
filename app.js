@@ -11,6 +11,7 @@ const app = express();
 
 //====CUSTOM MODULES
 const users = require('./routes/users');
+const dictionaries = require('./routes/oxford-api');
 const dbConfig = require('./dbConfig/config-index');
 
 //====PORT
@@ -20,9 +21,8 @@ app.use(bodyParser.json())
 app.use('/', express.static('views'));
 
 //====ROUTER
-app.use('/api/user', users);
-
-// https://github.com/expressjs/express/wiki#template-engines
+app.use('/api/users', users);
+app.use('/api/dictionaries', dictionaries)
 
 
 app.get('/', function (req, res, next) {

@@ -1,5 +1,47 @@
 
 var Dictionary = require("oxford-dictionary-api");
+const express = require('express');
+const router = express.Router();
+
+router.get('/', (req, res) => {
+  const app_id = "1173d420";
+  const app_key = "fd07bff2c06f70752c2a3ee36a3c5bab";
+  const dict = new Dictionary(app_id, app_key);
+
+  let definitions = [];
+  const { word } = req.body;
+
+  dict.find(`${word}/definitions`, function (error, data) {
+    // dict.find("ace", function (error, data) {
+    // if (error) return console.log("ERROR:", error);
+    if (error) return res.status(400).send(error);
+
+    console.log(data.metadata.provider);
+
+    data.results[0].lexicalEntries.forEach((lexicalEntry, i, arr) => {
+      // console.log('\n\n' + i, lexicalEntry.entries, '\n')      
+
+      lexicalEntry.entries.forEach((entry, j, arr) => {
+        // console.log('\n\n' + i, entry.senses, '\n')
+
+        entry.senses.forEach(((senses, k, arr) => {
+          // console.log('\n\n' + i + " " + j + " " + k, senses.definitions[0], '\n')
+
+          definitions.push(senses.definitions);
+        }))
+      })
+    })
+
+    //keep only 4 results
+     definitions.splice(4);
+
+    console.log(definitions)
+    res.send({ provider: data.metadata.provider, definitions })
+  });
+})
+module.exports = router;
+
+
 
 function findWordOxford() {
 
@@ -15,12 +57,12 @@ function findWordOxford() {
     data.results[0].lexicalEntries.forEach((lexicalEntry, i, arr) => {
       // console.log('\n\n' + i, lexicalEntry.entries, '\n')      
 
-      lexicalEntry.entries.forEach((entry, j, arr ) => {
+      lexicalEntry.entries.forEach((entry, j, arr) => {
         // console.log('\n\n' + i, entry.senses, '\n')
 
-        entry.senses.forEach(((senses, k , arr ) => {
-          console.log('\n\n' + i + " " + j +" " +  k, senses.definitions[0], '\n')
-  
+        entry.senses.forEach(((senses, k, arr) => {
+          console.log('\n\n' + i + " " + j + " " + k, senses.definitions[0], '\n')
+
 
         }))
       })
@@ -29,7 +71,7 @@ function findWordOxford() {
   });
 }
 
-module.exports = findWordOxford;
+
 
 
 
