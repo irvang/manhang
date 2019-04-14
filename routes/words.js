@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
+const fs = require('fs');
 
 /* @route: GET /words
    @desc Get all words from Reach.io API. Uses fetch to get around the Cross-
@@ -29,48 +30,40 @@ router.get('/:difficulty/:minLength/:maxLength', (req, res) => {
     .catch(err => console.error('\n ERROR in catch:\n', err));
 });
 
+
 router.get('/phrases', (req, res) => {
-  fetch(`/phrases.txt`)
-    .then(function (response) {
-      if (response.ok) {
 
-        return response.text();//a promise, convert to object
-      }
-    })
-    .then(bodyAsJson => {
+  let data = '';
 
-      //may have to restructure so that gui loads before all the response
-      //====Starts game after receiving array
-      // state.ALL_WORDS = [...bodyAsJson];//clone array, not a reference
+  // to use path, __dirname as a starting directory is needed, absolut path would 
+  // require route as if it started on app.js, since it is where route is called
+  // https://stackabuse.com/read-files-with-node-js/
+  const readStream = fs.createReadStream(__dirname + '/../assets/phrases.txt', 'utf8');
 
-      // startGameAddListeners();// uses state.ALL_WORDS
+  readStream.on('data', function (chunk) {
+    data += chunk;
+  })
+    .on('end', function () {
 
-      bodyAsJson = bodyAsJson.split('\n')
+      data = data.split('\n');
 
       let newArr = [];
-      for (let i = 0; i < bodyAsJson.length; i++) {
-        //add bodyAsJson[i] and at i+1
-        // console.log(i +1, bodyAsJson[i])
-        if (bodyAsJson[i] !== '') {
+      for (let i = 0; i < data.length; i++) {
+        //add data[i] and at i+1
+        // console.log(i +1, data[i])
+        if (data[i] !== '') {
           newArr.push({
-            phrase: bodyAsJson[i],
-            meaning: bodyAsJson[i + 1],
+            phrase: data[i],
+            meaning: data[i + 1],
             source: "https://knowyourphrase.com/"
           });
           //increase en extra one since value has been obtained already
           i++;
         }
-
       }
+      res.status(200).send(newArr);
+    });
 
-      bodyAsJson.forEach((elm, i) => {
-        if (elm !== '') {
-          // console.log('empty at:', elm)
-        }
-      })
-      console.log(newArr)
-    })
-    .catch(error => console.log('ERROR: \n', error));
-})
+});
 
 module.exports = router;

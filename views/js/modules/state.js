@@ -13,7 +13,8 @@ const state = {
   ALL_WORDS: [],//dummy, will be replaced with a clone of the response
   consecutiveWins: 0,
   isFinished: false,
-  isWon: false
+  isWon: false,
+  isPhrase: false
 }
 
 export default state;
