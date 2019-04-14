@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose');//needed to save()
 const express = require('express');
 const router = express.Router();
 
@@ -6,7 +6,8 @@ const User = require('../models/user');
 
 
 /* 
-Creates a new user
+  @route POST /user
+  @desc Creates a new user. Not currently used.
 */
 router.post('/' , async (req, res) => {
   let user = await User.findOne({userName: req.body.userName});

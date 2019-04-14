@@ -4,7 +4,7 @@
 ## Overview
 
 
-Manhang is an implementation of the popular game [Hangman](/Users/irvingangulo/dev/manhang-2/README.md). The game consists of guessing a word that another player, the computer in this case, has selected. For this implementation, the user will have 6 chances to guess the word. 
+Manhang is an implementation of the popular game (you guessed it) [Hangman](/Users/irvingangulo/dev/manhang-2/README.md). The game consists of guessing a word that another player, the computer in this case, has selected. For this implementation, the user will have 6 chances to guess the word. 
 
 <!-- After the user finishes, the word meaning is automatically searched in two (2) dictionaries, Oxford University Press and Webster-Merrian Online. -->
 
@@ -16,6 +16,14 @@ Manhang is an implementation of the popular game [Hangman](/Users/irvingangulo/d
 
 ## Features
 Lots of wonderful things.
+
+Canvas
+Dictionaries, 2
+Difficulty, etc params
+Alphabet interface, remaining trials
+Modular JS
+express.router
+Flexbox, responsive 
 
 ## Setup
 ### Prerequisites

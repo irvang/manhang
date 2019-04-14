@@ -2,7 +2,7 @@
 App deployed in heroku here: https://manhang-irv.herokuapp.com/
 */
 
-const fetch = require('node-fetch');
+//====NPM MODULES
 const express = require('express')
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -17,6 +17,7 @@ const dbConfig = require('./dbConfig/config-index');
 //====PORT
 const PORT = process.env.PORT || 3000;
 
+//MIDDLEWARE
 app.use(bodyParser.json())
 app.use('/', express.static('views'));
 
@@ -25,13 +26,16 @@ app.use('/api/users', usersRouter);
 app.use('/api/dictionaries', dictionariesRouter)
 app.use('/words', wordsRouter)
 
-
+//LANDING PAGE
 app.get('/', function (req, res, next) {
   res.render();
 });
 
 //====MONGOOSE CONNECTION
-mongoose.connect(dbConfig.getDbConnectionString(), { useNewUrlParser: true });//returns string
+mongoose.connect(
+  dbConfig.getDbConnectionString(), //returns string
+  { useNewUrlParser: true }
+);
 
 //====SERVER CONNECTION
 app.listen(PORT, function () {
@@ -39,7 +43,7 @@ app.listen(PORT, function () {
 });
 
 
-
+//====UNUSED
 /* Returns longest and shortest word lengths in array.
 Needs input as array, not as JSON.
 Used only for testing purposes.   */
