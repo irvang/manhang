@@ -29,4 +29,48 @@ router.get('/:difficulty/:minLength/:maxLength', (req, res) => {
     .catch(err => console.error('\n ERROR in catch:\n', err));
 });
 
+router.get('/phrases', (req, res) => {
+  fetch(`/phrases.txt`)
+    .then(function (response) {
+      if (response.ok) {
+
+        return response.text();//a promise, convert to object
+      }
+    })
+    .then(bodyAsJson => {
+
+      //may have to restructure so that gui loads before all the response
+      //====Starts game after receiving array
+      // state.ALL_WORDS = [...bodyAsJson];//clone array, not a reference
+
+      // startGameAddListeners();// uses state.ALL_WORDS
+
+      bodyAsJson = bodyAsJson.split('\n')
+
+      let newArr = [];
+      for (let i = 0; i < bodyAsJson.length; i++) {
+        //add bodyAsJson[i] and at i+1
+        // console.log(i +1, bodyAsJson[i])
+        if (bodyAsJson[i] !== '') {
+          newArr.push({
+            phrase: bodyAsJson[i],
+            meaning: bodyAsJson[i + 1],
+            source: "https://knowyourphrase.com/"
+          });
+          //increase en extra one since value has been obtained already
+          i++;
+        }
+
+      }
+
+      bodyAsJson.forEach((elm, i) => {
+        if (elm !== '') {
+          // console.log('empty at:', elm)
+        }
+      })
+      console.log(newArr)
+    })
+    .catch(error => console.log('ERROR: \n', error));
+})
+
 module.exports = router;
