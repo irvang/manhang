@@ -1,5 +1,5 @@
 import selectNewWord from './selectNewWord.js';
-import words from './words.js';
+import words from './state.js';
 
 
 export default function apiParamsListeners() {
@@ -34,7 +34,7 @@ function fetchDataAndUpdate(difficulty, minLength, maxLength) {
     })
     .then(bodyAsJson => {
 
-      words.ALL_WORDS = bodyAsJson;
+      state.ALL_WORDS = bodyAsJson;
       //may have to restructure so that gui loads before all the response
       //====Starts game after receiving array
       selectNewWord();// passes as ALL_WORDS

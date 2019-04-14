@@ -1,6 +1,6 @@
 // import compareInputToWord from './compareInputToWord.js';
 
-import words from './words.js';
+import state from './state.js';
 import { drawCanvas } from './drawCanvas.js';
 import fetchDefinition from './fetchDefinition.js';
 
@@ -47,26 +47,26 @@ function compareInputToWord(evt) {
 
   /* if letter is in string, change color to greenish chartreuse and reveal the
   matches within the blanks */
-  if (words.single.includes(letter)) {
+  if (state.single.includes(letter)) {
     this.style.backgroundColor = 'chartreuse';
 
     /* loop through word, if letter and word[i] match, add the letter to the 
-    revealed word, if not, add words.revealed[i], which is either a blank or 
+    revealedWord word, if not, add state.revealedWord[i], which is either a blank or 
     any previously matched letter */
     let newRevealed = '';
-    for (let i = 0; i < words.single.length; i++) {
-      newRevealed += letter === words.single[i] ? letter : words.revealed[i];
+    for (let i = 0; i < state.single.length; i++) {
+      newRevealed += letter === state.single[i] ? letter : state.revealedWord[i];
     }
 
-    words.revealed = newRevealed;
-    document.querySelector('#word-display').innerText = words.revealed;
+    state.revealedWord = newRevealed;
+    document.querySelector('#word-display').innerText = state.revealedWord;
   } else {
     //if letter is not in string, decrease remaining trials and change color to red
-    words.remainingTrials--;
+    state.remainingTrials--;
     this.style.backgroundColor = 'red';
     this.style.color = 'white';
-    remainingTrialsSpan.innerHTML = words.remainingTrials; // display remaining trials
-    drawCanvas(words.remainingTrials);
+    remainingTrialsSpan.innerHTML = state.remainingTrials; // display remaining trials
+    drawCanvas(state.remainingTrials);
 
   }
 
@@ -77,40 +77,40 @@ function compareInputToWord(evt) {
 function isGameEnded(remainingTrialsP) {
 
 
-  if (words.revealed === words.single) {
+  if (state.revealedWord === state.single) {
     //span after text is needed so no error is thrown if the listeners 
     // are resued after ending game, a bit sketchy ...
     remainingTrialsP.innerHTML = "You got it!<span></span>";
     removeAlphabetListeners() 
     /* isFinished used to keep track of whether the score should increase or not
     if finished, it prevents score from increasing */
-    if (!words.isFinished) {
-      fetchDefinition(words.single);
+    if (!state.isFinished) {
+      fetchDefinition(state.single);
 
       //raise flag and increase
-      words.isFinished = true;
-      words.consecutiveWins++;
-      words.isWon = true;
+      state.isFinished = true;
+      state.consecutiveWins++;
+      state.isWon = true;
 
-      if (words.consecutiveWins > parseInt(localStorage.hangmanScore)) {
+      if (state.consecutiveWins > parseInt(localStorage.hangmanScore)) {
 
-        localStorage.hangmanScore = words.consecutiveWins;
+        localStorage.hangmanScore = state.consecutiveWins;
         console.log('updating localStorage winning', localStorage.hangmanScore);
       }
     }
     return;
   }
 
-  if (words.remainingTrials <= 0) {
+  if (state.remainingTrials <= 0) {
     remainingTrialsP.innerHTML = "Game over<span></span>";
-    document.querySelector('#word-display').innerText = words.single;
+    document.querySelector('#word-display').innerText = state.single;
     removeAlphabetListeners() 
 
-    if (!words.isFinished) {
-      fetchDefinition(words.single);
+    if (!state.isFinished) {
+      fetchDefinition(state.single);
       
       //raise flag and do not increase
-      words.isFinished = true;
+      state.isFinished = true;
       /* no updating when losing, since it would have been updated when won */
     }
 

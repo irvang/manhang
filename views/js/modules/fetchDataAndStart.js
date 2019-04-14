@@ -1,5 +1,5 @@
 import startGameAddListeners from './startGameAddListeners.js';
-import words from './words.js';
+import state from './state.js';
 
  
 // @desc Fetch data receives 3 numbers: difficulty, minLength, maxLength
@@ -20,9 +20,9 @@ export function fetchDataAndStart(difficulty, minLength, maxLength) {
 
       //may have to restructure so that gui loads before all the response
       //====Starts game after receiving array
-      words.ALL_WORDS = [...bodyAsJson];//clone array, not a reference
+      state.ALL_WORDS = [...bodyAsJson];//clone array, not a reference
 
-      startGameAddListeners();// uses words.ALL_WORDS
+      startGameAddListeners();// uses state.ALL_WORDS
     })
     .catch(error => console.log('ERROR: \n', error));
 }

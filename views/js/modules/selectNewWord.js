@@ -1,7 +1,7 @@
 import alphabetSpansListeners from './alphabetSpansListeners.js';
 import { drawCanvas, createPole } from './drawCanvas.js';
 
-import words from './words.js';
+import state from './state.js';
 import { clearDefinitionsSection } from './fetchDefinition.js';
 
 /* 
@@ -10,30 +10,30 @@ Used in startGameAddListeners.js and apiParamsListeners.js
 
 export default function selectNewWord() {
 
-  words.single = words.ALL_WORDS[Math.floor(Math.random() * words.ALL_WORDS.length)];
+  state.single = state.ALL_WORDS[Math.floor(Math.random() * state.ALL_WORDS.length)];
 
-  words.revealed = ''; // see definition
+  state.revealedWord = ''; // see definition
 
-  //create underscores of the full lenght of word, no letters revealed so far
-  for (let i = 0; i < words.single.length; i++) {
-    words.revealed += '_';
+  //create underscores of the full lenght of word, no letters revealedWord so far
+  for (let i = 0; i < state.single.length; i++) {
+    state.revealedWord += '_';
   }
 
   //add blanks to div when newwords is selected
-  document.querySelector('#word-display').innerText = words.revealed;
+  document.querySelector('#word-display').innerText = state.revealedWord;
 
   //reset remaining trials
-  words.remainingTrials = 6;
+  state.remainingTrials = 6;
 
   // clear canvas if remaining trials is 6
-  drawCanvas(words.remainingTrials);
+  drawCanvas(state.remainingTrials);
   createPole();
 
   clearDefinitionsSection();
 
   alphabetSpansListeners(); //add listeners that may have been removed
 
-  document.querySelector("#remaining-trials").innerHTML = `Trials: <span>${words.remainingTrials}</span>`;
+  document.querySelector("#remaining-trials").innerHTML = `Trials: <span>${state.remainingTrials}</span>`;
 
   const alphabetSpans = document.querySelectorAll('div.alphabet span');
 
@@ -42,24 +42,24 @@ export default function selectNewWord() {
     alphabetSpans[i].style = "background-color: '', color: black";
   }
 
-  if (words.isFinished && words.isWon) {
+  if (state.isFinished && state.isWon) {
     /* -keep score, 
     -flags should set to false, so if a person 
     presses new word before winning, its score is reset */
-    words.isFinished = false;
-    words.isWon = false;
+    state.isFinished = false;
+    state.isWon = false;
 
   } else {
     /* if game is not finished, or if game has finished but lost:
     -set score to 0, 
     -all flags to false */
-    words.isFinished = false;
-    words.isWon = false;
-    words.consecutiveWins = 0;//reset score
+    state.isFinished = false;
+    state.isWon = false;
+    state.consecutiveWins = 0;//reset score
 
   }
 
-  console.log('word: ' + words.single);
+  console.log('word: ' + state.single);
   //check length is same as blanks
-  // console.log('lenght equal:', words.revealed.length === words.single.length);
+  // console.log('lenght equal:', state.revealedWord.length === state.single.length);
 }
