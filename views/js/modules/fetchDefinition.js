@@ -5,6 +5,10 @@ import state from "./state.js";
 // dictionaries' APIs. The first set of definitions found will be returned.
 export default function fetchDefinition() {
 
+  if(state.isPhrase) {
+    //definition should already be on element
+    return;
+  }
   return fetch(`/api/dictionaries/oxford/${state.singleWord}`)
     .then(function (response) {
 
@@ -36,7 +40,7 @@ function storeDictionaryDefinition(body) {
 // get element, and create elements to hold the data
 let definitionsSection = document.querySelector('section.definitions');
 let definitionH3 = document.createElement('h4');
-let definitionOl = document.createElement('ol');
+let definitionOl = document.createElement('ul');
 let definitionsDiv = document.createElement('div');
 
 // uses elements above to display the data:
@@ -45,7 +49,7 @@ export function showDefinitions() {
 
   definitionsSection.innerHTML = '';//clear section
   const { provider, definitions, singleWord } = state;
-
+console.log(definitions)
   definitionH3.innerHTML = singleWord + ":";
 
   // loop through array, create li with definition and append to ol

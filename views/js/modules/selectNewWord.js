@@ -13,11 +13,14 @@ export default function selectNewWord() {
 
   if (state.isPhrase) {
     let randomIndex = Math.floor(Math.random() * state.ALL_WORDS.length);
-    state.singleWord = state.ALL_WORDS[randomIndex].phrase;
+
+    let phraseObject = state.ALL_WORDS[randomIndex];
+  
+    state.singleWord = phraseObject.word;
     state.definitions = [];
-    state.definitions.push(state.ALL_WORDS[randomIndex].meaning);
-    state.provider = state.ALL_WORDS[randomIndex].source;
-    
+    state.definitions.push (phraseObject.definitions);
+    state.provider = phraseObject.provider;
+
   } else {
     state.singleWord = state.ALL_WORDS[Math.floor(Math.random() * state.ALL_WORDS.length)];
 
