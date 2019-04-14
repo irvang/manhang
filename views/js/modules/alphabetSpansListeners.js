@@ -1,6 +1,6 @@
 import state from './state.js';
 import { drawCanvas } from './drawCanvas.js';
-import fetchDefinition from './fetchDefinition.js';
+import {showDefinitions} from './fetchDefinition.js';
 
  
 // @desc Adds listeners to alphabet spans (letters) Compares and check if 
@@ -35,7 +35,8 @@ function compareInputToWord(evt) {
 
   /* if letter is in string, change color to greenish chartreuse and reveal the
   matches within the blanks */
-  if (state.singleWord.includes(letter)) {
+  console.log(state.singleWord.toLowerCase().includes(letter))
+  if (state.singleWord.toLowerCase().includes(letter)) {
     this.style.backgroundColor = 'chartreuse';
 
     /* loop through word, if letter and word[i] match, add the letter to the 
@@ -43,7 +44,7 @@ function compareInputToWord(evt) {
     blank or a previously matched letter */
     let newRevealed = '';
     for (let i = 0; i < state.singleWord.length; i++) {
-      newRevealed += letter === state.singleWord[i] ? letter : state.revealedWord[i];
+      newRevealed += letter === state.singleWord[i].toLowerCase() ? state.singleWord[i] : state.revealedWord[i];
     }
 
     // replace revealedWord is state object
@@ -71,7 +72,7 @@ function isGameEnded(remainingTrialsP) {
     /* isFinished used to keep track of whether the score should increase or not
     if finished, it prevents score from increasing */
     if (!state.isFinished) {
-      fetchDefinition(state.singleWord);
+      showDefinitions();//will happen as soon as word is selected to avoid lag
 
       //raise flag and increase
       state.isFinished = true;
@@ -93,7 +94,7 @@ function isGameEnded(remainingTrialsP) {
     removeAlphabetListeners() 
 
     if (!state.isFinished) {
-      fetchDefinition(state.singleWord);
+      showDefinitions();
       
       //raise flag and do not increase
       state.isFinished = true;

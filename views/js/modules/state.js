@@ -6,6 +6,8 @@
 //====STATE
 const state = {
   singleWord: '',
+  definitions: [],
+  provider: '',
 
   //create a string that holds the length of of the words in blanks, or whatever is revealed so far
   revealedWord: '',

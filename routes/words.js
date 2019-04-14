@@ -52,10 +52,12 @@ router.get('/phrases', (req, res) => {
         //add data[i] and at i+1
         // console.log(i +1, data[i])
         if (data[i] !== '') {
+          // keeping structure the same to make it easier
+          // body = {string: provider, array: definitions, string: word}
           newArr.push({
-            phrase: data[i],
-            meaning: data[i + 1],
-            source: "https://knowyourphrase.com/"
+            word: data[i], //phrase
+            definitions: data[i + 1], //single definition
+            provider: "https://knowyourphrase.com/"
           });
           //increase en extra one since value has been obtained already
           i++;

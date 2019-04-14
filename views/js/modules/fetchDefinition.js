@@ -1,9 +1,11 @@
+import state from "./state.js";
 
 // @desc Sends a request to server to get a definition from the different 
 // dictionaries. Server then sends a request to the different 
 // dictionaries' APIs. The first set of definitions found will be returned.
-export default function fetchDefinition(word) {
-  return fetch(`/api/dictionaries/oxford/${word}`)
+export default function fetchDefinition() {
+
+  return fetch(`/api/dictionaries/oxford/${state.singleWord}`)
     .then(function (response) {
 
       // status will be 200 regardless, to avoid 400 errors
@@ -13,15 +15,22 @@ export default function fetchDefinition(word) {
         return response.json();//a promise, convert to object
       }
     })
-    .then(bodyAsJson => {
+    .then(body => {
+      // body = {string: provider, array: definitions, string: word}
+      storeDictionaryDefinition(body)
 
       //if here, show definition on page
-      showDefinition(bodyAsJson);//{string: provider, array: definitions, string: word}
-
+      // showDefinition(body);
     })
     .catch(error => {
       if (error) console.log(error);
     });
+}
+
+function storeDictionaryDefinition(body) {
+  state.singleWord = body.word;
+  state.definitions = [...body.definitions];
+  state.provider = body.provider;
 }
 
 // get element, and create elements to hold the data
@@ -32,12 +41,12 @@ let definitionsDiv = document.createElement('div');
 
 // uses elements above to display the data:
 // {string provider, array definitions, string word}
-function showDefinition(bodyAsJson) {
+export function showDefinitions() {
 
   definitionsSection.innerHTML = '';//clear section
-  const { provider, definitions, word } = bodyAsJson;
+  const { provider, definitions, singleWord } = state;
 
-  definitionH3.innerHTML = word + ":";
+  definitionH3.innerHTML = singleWord + ":";
 
   // loop through array, create li with definition and append to ol
   definitions.forEach((elm, i) => {

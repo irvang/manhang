@@ -14,6 +14,9 @@ export default function apiParamsListeners() {
 
   let sectionParams = document.querySelector('#params');
 
+  //disable for phrases
+  if(state.isPhrase) return;
+
   sectionParams.addEventListener('change', evt => {
 
     const difficulty = parseInt(selectDifficulty.value);

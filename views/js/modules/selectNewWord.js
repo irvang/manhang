@@ -1,7 +1,7 @@
 import alphabetSpansListeners from './alphabetSpansListeners.js';
 import { drawCanvas, createPole } from './drawCanvas.js';
 import state from './state.js';
-import { clearDefinitionsSection } from './fetchDefinition.js';
+import fetchDefinition, { clearDefinitionsSection } from './fetchDefinition.js';
 
 // @desc Selects a new word from array
 // Calls to: canvas, drawPole, clearDefinitionsSection, and alphabetSpansListeners
@@ -10,8 +10,25 @@ import { clearDefinitionsSection } from './fetchDefinition.js';
 export default function selectNewWord() {
 
   // select random word from array
-  state.singleWord = state.ALL_WORDS[Math.floor(Math.random() * state.ALL_WORDS.length)];
 
+  if (state.isPhrase) {
+    let randomIndex = Math.floor(Math.random() * state.ALL_WORDS.length);
+    state.singleWord = state.ALL_WORDS[randomIndex].phrase;
+    state.definitions = [];
+    state.definitions.push(state.ALL_WORDS[randomIndex].meaning);
+    state.provider = state.ALL_WORDS[randomIndex].source;
+    
+  } else {
+    state.singleWord = state.ALL_WORDS[Math.floor(Math.random() * state.ALL_WORDS.length)];
+
+    //fetch and store definition here, to avoid lag
+    //display when game finishes
+  }
+
+  // happens as soon as word is selected to avoid lag
+  fetchDefinition();
+
+  console.log(state)
   //create a string that holds the length of of the words in blanks, 
   // or whatever is revealed so far
   state.revealedWord = '';
@@ -19,7 +36,8 @@ export default function selectNewWord() {
   //create underscores of the full lenght of word, no letters revealed so far 
   // i.e.: "_ _ _ _"
   for (let i = 0; i < state.singleWord.length; i++) {
-    state.revealedWord += '_';
+    if (state.singleWord[i] !== ' ') state.revealedWord += '_';
+    else state.revealedWord += ' ';
   }
 
   //add the underscores to div 
@@ -63,7 +81,7 @@ export default function selectNewWord() {
   }
 
   // //For testing only
-  // console.log('word: ' + state.singleWord);
+  console.log('word: ' + state.singleWord);
   //check length is same as blanks
   // console.log('lenght equal:', state.revealedWord.length === state.singleWord.length);
 }
