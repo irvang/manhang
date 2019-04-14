@@ -25,7 +25,7 @@ export default function selectNewWord() {
   //reset remaining trials
   words.remainingTrials = 6;
 
-  // clear canvas
+  // clear canvas if remaining trials is 6
   drawCanvas(words.remainingTrials);
   createPole();
 
@@ -33,7 +33,7 @@ export default function selectNewWord() {
 
   alphabetSpansListeners(); //add listeners that may have been removed
 
-  document.querySelector("#remaining-trials").innerHTML = `Remaining trials:<span>${words.remainingTrials}</span>`;
+  document.querySelector("#remaining-trials").innerHTML = `Remaining trials: <span>${words.remainingTrials}</span>`;
 
   const alphabetSpans = document.querySelectorAll('div.alphabet span');
 
@@ -43,19 +43,20 @@ export default function selectNewWord() {
   }
 
   if (words.isFinished && words.isWon) {
-    /* keep score, flags should set to false, so if a person 
+    /* -keep score, 
+    -flags should set to false, so if a person 
     presses new word before winning, its score is reset */
     words.isFinished = false;
     words.isWon = false;
-    //keep score
 
-    console.log('keeping score')
   } else {
-    /* if game is not finished, or if game has finished but lost, set score to 0, all flags to false */
+    /* if game is not finished, or if game has finished but lost:
+    -set score to 0, 
+    -all flags to false */
     words.isFinished = false;
     words.isWon = false;
     words.consecutiveWins = 0;//reset score
-    console.log('resetting score')
+
   }
 
   console.log('word: ' + words.single);

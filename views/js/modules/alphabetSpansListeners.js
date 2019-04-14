@@ -29,10 +29,11 @@ if (!localStorage.hangmanScore) {// if undefined
   // console.log('localStorage.hangmanScore exists');
 }
 
-const remainingTrialsSpan = document.querySelector("#remaining-trials>span");
-const remainingTrialsP = document.querySelector('#remaining-trials');
 
 function compareInputToWord(evt) {
+  
+  const remainingTrialsSpan = document.querySelector("#remaining-trials>span");
+  const remainingTrialsP = document.getElementById('remaining-trials');
 
   /*To remove listener in a function expression (like a closure), the anonymous function
     needs to be named. Works like a charm! See:
@@ -69,18 +70,18 @@ function compareInputToWord(evt) {
 
   }
 
-  isGameEnded();
+  isGameEnded(remainingTrialsP);
 
 }
 
-function isGameEnded() {
+function isGameEnded(remainingTrialsP) {
+
+
   if (words.revealed === words.single) {
     //span after text is needed so no error is thrown if the listeners 
     // are resued after ending game, a bit sketchy ...
     remainingTrialsP.innerHTML = "You got it!<span></span>";
-
-    
-
+    removeAlphabetListeners() 
     /* isFinished used to keep track of whether the score should increase or not
     if finished, it prevents score from increasing */
     if (!words.isFinished) {
@@ -103,7 +104,7 @@ function isGameEnded() {
   if (words.remainingTrials <= 0) {
     remainingTrialsP.innerHTML = "Game over<span></span>";
     document.querySelector('#word-display').innerText = words.single;
-   
+    removeAlphabetListeners() 
 
     if (!words.isFinished) {
       fetchDefinition(words.single);
@@ -114,5 +115,14 @@ function isGameEnded() {
     }
 
     return;
+  }
+}
+
+/* Remove listeners happens once the game is finished */
+function removeAlphabetListeners() {
+  const alphabetSpans = document.querySelectorAll('div.alphabet span');
+
+  for (let i = 0; i < alphabetSpans.length; i++) {
+    alphabetSpans[i].removeEventListener('click', compareInputToWord);
   }
 }
