@@ -1,13 +1,12 @@
-// import compareInputToWord from './compareInputToWord.js';
-
 import state from './state.js';
 import { drawCanvas } from './drawCanvas.js';
 import fetchDefinition from './fetchDefinition.js';
 
-/* 
-Adds listeners to spans
-Compares input to word
-*/
+ 
+// @desc Adds listeners to alphabet spans (letters) Compares and check if 
+// selected letter is in word
+// Also in module: compareInputToWord, isGameEnded, removeAlphabetListeners
+
 
 export default function alphabetSpansListeners() {
   const alphabetSpans = document.querySelectorAll('div.alphabet span');
@@ -17,16 +16,11 @@ export default function alphabetSpansListeners() {
   }
 }
 
+// UNUSED feature, but a way to keep score of user
 let localStorage = window.localStorage;
-
-// localStorage.clear()
-// localStorage.hangmanScore = 0;
-
 if (!localStorage.hangmanScore) {// if undefined
   console.log('creating localStorage.hangmanScore');
   localStorage.hangmanScore = 0;
-} else {
-  // console.log('localStorage.hangmanScore exists');
 }
 
 
@@ -35,15 +29,9 @@ function compareInputToWord(evt) {
   const remainingTrialsSpan = document.querySelector("#remaining-trials>span");
   const remainingTrialsP = document.getElementById('remaining-trials');
 
-  /*To remove listener in a function expression (like a closure), the anonymous function
-    needs to be named. Works like a charm! See:
-  https://medium.com/@DavideRama/removeeventlistener-and-anonymous-functions-ab9dbabd3e7b */
-
-
   const letter = evt.target.innerText;//because it is the inner within span
 
   this.removeEventListener('click', compareInputToWord);//this === span
-
 
   /* if letter is in string, change color to greenish chartreuse and reveal the
   matches within the blanks */
@@ -51,13 +39,14 @@ function compareInputToWord(evt) {
     this.style.backgroundColor = 'chartreuse';
 
     /* loop through word, if letter and word[i] match, add the letter to the 
-    revealedWord word, if not, add state.revealedWord[i], which is either a blank or 
-    any previously matched letter */
+    revealedWord word, if not, add state.revealedWord[i], which is either a 
+    blank or a previously matched letter */
     let newRevealed = '';
     for (let i = 0; i < state.singleWord.length; i++) {
       newRevealed += letter === state.singleWord[i] ? letter : state.revealedWord[i];
     }
 
+    // replace revealedWord is state object
     state.revealedWord = newRevealed;
     document.querySelector('#word-display').innerText = state.revealedWord;
   } else {
@@ -71,12 +60,9 @@ function compareInputToWord(evt) {
   }
 
   isGameEnded(remainingTrialsP);
-
 }
 
 function isGameEnded(remainingTrialsP) {
-
-
   if (state.revealedWord === state.singleWord) {
     //span after text is needed so no error is thrown if the listeners 
     // are resued after ending game, a bit sketchy ...
@@ -98,7 +84,7 @@ function isGameEnded(remainingTrialsP) {
         console.log('updating localStorage winning', localStorage.hangmanScore);
       }
     }
-    return;
+    return;//only to avoid next part
   }
 
   if (state.remainingTrials <= 0) {
@@ -114,11 +100,11 @@ function isGameEnded(remainingTrialsP) {
       /* no updating when losing, since it would have been updated when won */
     }
 
-    return;
+    return;// no real use here, just to avoid next line
   }
 }
 
-/* Remove listeners happens once the game is finished */
+/* Remove letter's listeners. Happens once the game is finished */
 function removeAlphabetListeners() {
   const alphabetSpans = document.querySelectorAll('div.alphabet span');
 

@@ -1,12 +1,10 @@
 import alphabetSpansListeners from './alphabetSpansListeners.js';
 import { drawCanvas, createPole } from './drawCanvas.js';
-
 import state from './state.js';
 import { clearDefinitionsSection } from './fetchDefinition.js';
 
-// @desc Selects a new word from array, 
+// @desc Selects a new word from array
 // Calls to: canvas, drawPole, clearDefinitionsSection, and alphabetSpansListeners
-// 
 // Used in startGameAddListeners.js and apiParamsListeners.js
 
 export default function selectNewWord() {
