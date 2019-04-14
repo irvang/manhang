@@ -47,15 +47,15 @@ function compareInputToWord(evt) {
 
   /* if letter is in string, change color to greenish chartreuse and reveal the
   matches within the blanks */
-  if (state.single.includes(letter)) {
+  if (state.singleWord.includes(letter)) {
     this.style.backgroundColor = 'chartreuse';
 
     /* loop through word, if letter and word[i] match, add the letter to the 
     revealedWord word, if not, add state.revealedWord[i], which is either a blank or 
     any previously matched letter */
     let newRevealed = '';
-    for (let i = 0; i < state.single.length; i++) {
-      newRevealed += letter === state.single[i] ? letter : state.revealedWord[i];
+    for (let i = 0; i < state.singleWord.length; i++) {
+      newRevealed += letter === state.singleWord[i] ? letter : state.revealedWord[i];
     }
 
     state.revealedWord = newRevealed;
@@ -77,7 +77,7 @@ function compareInputToWord(evt) {
 function isGameEnded(remainingTrialsP) {
 
 
-  if (state.revealedWord === state.single) {
+  if (state.revealedWord === state.singleWord) {
     //span after text is needed so no error is thrown if the listeners 
     // are resued after ending game, a bit sketchy ...
     remainingTrialsP.innerHTML = "You got it!<span></span>";
@@ -85,7 +85,7 @@ function isGameEnded(remainingTrialsP) {
     /* isFinished used to keep track of whether the score should increase or not
     if finished, it prevents score from increasing */
     if (!state.isFinished) {
-      fetchDefinition(state.single);
+      fetchDefinition(state.singleWord);
 
       //raise flag and increase
       state.isFinished = true;
@@ -103,11 +103,11 @@ function isGameEnded(remainingTrialsP) {
 
   if (state.remainingTrials <= 0) {
     remainingTrialsP.innerHTML = "Game over<span></span>";
-    document.querySelector('#word-display').innerText = state.single;
+    document.querySelector('#word-display').innerText = state.singleWord;
     removeAlphabetListeners() 
 
     if (!state.isFinished) {
-      fetchDefinition(state.single);
+      fetchDefinition(state.singleWord);
       
       //raise flag and do not increase
       state.isFinished = true;

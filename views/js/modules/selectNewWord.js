@@ -4,18 +4,20 @@ import { drawCanvas, createPole } from './drawCanvas.js';
 import state from './state.js';
 import { clearDefinitionsSection } from './fetchDefinition.js';
 
-/* 
-Used in startGameAddListeners.js and apiParamsListeners.js
-*/
+// @desc Selects a new word from array, 
+// Calls to: canvas, drawPole, clearDefinitionsSection, and alphabetSpansListeners
+// 
+// Used in startGameAddListeners.js and apiParamsListeners.js
 
 export default function selectNewWord() {
 
-  state.single = state.ALL_WORDS[Math.floor(Math.random() * state.ALL_WORDS.length)];
+  // select random word from array
+  state.singleWord = state.ALL_WORDS[Math.floor(Math.random() * state.ALL_WORDS.length)];
 
   state.revealedWord = ''; // see definition
 
   //create underscores of the full lenght of word, no letters revealedWord so far
-  for (let i = 0; i < state.single.length; i++) {
+  for (let i = 0; i < state.singleWord.length; i++) {
     state.revealedWord += '_';
   }
 
@@ -59,7 +61,7 @@ export default function selectNewWord() {
 
   }
 
-  console.log('word: ' + state.single);
+  console.log('word: ' + state.singleWord);
   //check length is same as blanks
-  // console.log('lenght equal:', state.revealedWord.length === state.single.length);
+  // console.log('lenght equal:', state.revealedWord.length === state.singleWord.length);
 }

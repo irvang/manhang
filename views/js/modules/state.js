@@ -5,9 +5,9 @@
 
 //====STATE
 const state = {
-  single: '',
+  singleWord: '',
 
-  //create a string that holds the length of of the words in blanks, or whatever is revealedWord so far
+  //create a string that holds the length of of the words in blanks, or whatever is revealed so far
   revealedWord: '',
   remainingTrials: 6,
   ALL_WORDS: [],//dummy, will be replaced with a clone of the response
