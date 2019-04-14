@@ -15,15 +15,27 @@ Manhang is an implementation of the popular game (you guessed it) [Hangman](/Use
 
 
 ## Features
-Lots of wonderful things.
+I have included several features in this project as a way to make the game a bit more appealing. Some of these features are: 
 
-Canvas
-Dictionaries, 2
-Difficulty, etc params
-Alphabet interface, remaining trials
-Modular JS
-express.router
-Flexbox, responsive 
+- Display word defintions at end of game.
+
+- Drawing of the figure to higlight remaining trials.
+
+- Implementation of difficulty, min and max word lengths, through the provided Reach API.
+
+## Featured APIs and technologies
+- Canvas API: Display drawing.
+
+- Dictionaries: I am using Oxford and Merriam-Webster APIs to search for the meaning of the words once the game is finished, if the word is not found, a messag esaying "No definition found" is displayed.
+
+- Modules: JavaScript modules using import and export statements to help with code maintenance and clarity. 
+
+- Fetch API: Requests data from web server.
+
+- Responsive design: Using flexbox, to adjust screen to different sizes. Needs improvement for mobile devices, although it displays well.
+
+<!-- Alphabet interface, remaining trials
+express.router -->
 
 ## Setup
 ### Prerequisites
@@ -46,6 +58,9 @@ The application should now start on the determined server.
 
 - [Node.js](https://nodejs.org/en/download/) - Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [Express.js](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
+
+- [JavaScript](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
+
 
 
 <!-- not sure if will keep this -->
