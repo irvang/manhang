@@ -1,20 +1,22 @@
 
-
-export default function (word) {
+// @desc Sends a request to server to get a definition from the different 
+// dictionaries. Server then sends a request to the different 
+// dictionaries' APIs. The first set of definitions found will be returned.
+export default function fetchDefinition(word) {
   return fetch(`/api/dictionaries/oxford/${word}`)
     .then(function (response) {
 
-      //if word is found, status will be 200
+      // status will be 200 regardless, to avoid 400 errors
+      // an object with "No definiitons found" will be sent
+      // if no definition is found
       if (response.status === 200) {
         return response.json();//a promise, convert to object
-      } else {
-        console.log('requesting merrian')
       }
     })
     .then(bodyAsJson => {
 
       //if here, show definition on page
-      showDefinition(bodyAsJson);
+      showDefinition(bodyAsJson);//{string: provider, array: definitions, string: word}
 
     })
     .catch(error => {
@@ -22,12 +24,14 @@ export default function (word) {
     });
 }
 
-
+// get element, and create elements to hold the data
 let definitionsSection = document.querySelector('section.definitions');
 let definitionH3 = document.createElement('h4');
-let definitionUl = document.createElement('ol');
+let definitionOl = document.createElement('ol');
 let definitionsDiv = document.createElement('div');
 
+// uses elements above to display the data:
+// {string provider, array definitions, string word}
 function showDefinition(bodyAsJson) {
 
   definitionsSection.innerHTML = '';//clear section
@@ -35,25 +39,28 @@ function showDefinition(bodyAsJson) {
 
   definitionH3.innerHTML = word + ":";
 
+  // loop through array, create li with definition and append to ol
   definitions.forEach((elm, i) => {
-    definitionUl.innerHTML += `<li>${elm}</li>`;
+    definitionOl.innerHTML += `<li>${elm}</li>`;
   });
 
-  // source if there is a provider
+  // Show source (provider) only if there is one 
   if (provider) { definitionsDiv.innerHTML = "<b>Source:</b> " + provider; }
 
   definitionsSection.append(definitionH3);
-  definitionsSection.append(definitionUl);
+  definitionsSection.append(definitionOl);
   definitionsSection.append(definitionsDiv);
 
 }
 
+// @desc clears the definitions section
+// I am definint it here because of this module's relation to the section
 export function clearDefinitionsSection() {
 
   //clear div and each of the elements
   definitionsSection.innerHTML = `<p> </p>`;
 
   definitionH3.innerHTML = '';
-  definitionUl.innerHTML = '';
+  definitionOl.innerHTML = '';
   definitionsDiv.innerHTML = '';
 }
