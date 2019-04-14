@@ -4,6 +4,7 @@ import state from './state.js';
  
 // @desc Fetch data receives 3 numbers: difficulty, minLength, maxLength
 // These parameters are the query string on the request to Reach API.
+// used only at on index.js to start game
 
 export function fetchDataAndStart(difficulty, minLength, maxLength) {
 
