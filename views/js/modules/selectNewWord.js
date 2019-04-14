@@ -33,7 +33,7 @@ export default function selectNewWord() {
 
   alphabetSpansListeners(); //add listeners that may have been removed
 
-  document.querySelector("#remaining-trials").innerHTML = `Remaining trials: <span>${words.remainingTrials}</span>`;
+  document.querySelector("#remaining-trials").innerHTML = `Trials: <span>${words.remainingTrials}</span>`;
 
   const alphabetSpans = document.querySelectorAll('div.alphabet span');
 
