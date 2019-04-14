@@ -14,32 +14,36 @@ export default function selectNewWord() {
   // select random word from array
   state.singleWord = state.ALL_WORDS[Math.floor(Math.random() * state.ALL_WORDS.length)];
 
-  state.revealedWord = ''; // see definition
+  //create a string that holds the length of of the words in blanks, 
+  // or whatever is revealed so far
+  state.revealedWord = '';
 
-  //create underscores of the full lenght of word, no letters revealedWord so far
+  //create underscores of the full lenght of word, no letters revealed so far 
+  // i.e.: "_ _ _ _"
   for (let i = 0; i < state.singleWord.length; i++) {
     state.revealedWord += '_';
   }
 
-  //add blanks to div when newwords is selected
+  //add the underscores to div 
   document.querySelector('#word-display').innerText = state.revealedWord;
 
   //reset remaining trials
   state.remainingTrials = 6;
 
-  // clear canvas if remaining trials is 6
+  // drawCanvas clears the canvas if remaining trials is 6
   drawCanvas(state.remainingTrials);
-  createPole();
+  createPole(); //draws the pole on canvas
 
   clearDefinitionsSection();
 
   alphabetSpansListeners(); //add listeners that may have been removed
 
+  // display remaining trials again, since it may have displayed "Game Over" or "You got it!"
   document.querySelector("#remaining-trials").innerHTML = `Trials: <span>${state.remainingTrials}</span>`;
 
   const alphabetSpans = document.querySelectorAll('div.alphabet span');
 
-  //remove colors from displayed alphabet
+  //remove colors if added on previous game
   for (let i = 0; i < alphabetSpans.length; i++) {
     alphabetSpans[i].style = "background-color: '', color: black";
   }
@@ -58,10 +62,10 @@ export default function selectNewWord() {
     state.isFinished = false;
     state.isWon = false;
     state.consecutiveWins = 0;//reset score
-
   }
 
-  console.log('word: ' + state.singleWord);
+  // //For testing only
+  // console.log('word: ' + state.singleWord);
   //check length is same as blanks
   // console.log('lenght equal:', state.revealedWord.length === state.singleWord.length);
 }
