@@ -1,16 +1,18 @@
 import startGameAddListeners from './startGameAddListeners.js';
 import words from './words.js';
 
-/* 
-Fetch data receives 3 numbers: difficulty, minLength, maxLength
-These are the parameters that are to be the query string on the server side
-*/
+ 
+// @desc Fetch data receives 3 numbers: difficulty, minLength, maxLength
+// These parameters are the query string on the request to Reach API.
+
 export function fetchDataAndStart(difficulty, minLength, maxLength) {
-  // fetch('../words.txt') //faster for testing purposes
+
+  //Sends a request to the server, which in turn sends another request to
+  // http://app.linkedin-reach.io/words with the specified parameters as query string
   return fetch(`/words/${difficulty}/${minLength}/${maxLength}`)
     .then(function (response) {
       if (response.ok) {
-        // console.log(typeof response)
+
         return response.json();//a promise, convert to object
       }
     })
@@ -18,9 +20,9 @@ export function fetchDataAndStart(difficulty, minLength, maxLength) {
 
       //may have to restructure so that gui loads before all the response
       //====Starts game after receiving array
+      words.ALL_WORDS = [...bodyAsJson];//clone array, not a reference
 
-      words.ALL_WORDS = bodyAsJson;
-      startGameAddListeners();// passes as ALL_WORDS
+      startGameAddListeners();// uses words.ALL_WORDS
     })
     .catch(error => console.log('ERROR: \n', error));
 }
