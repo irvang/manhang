@@ -1,6 +1,11 @@
 import selectNewWord from './selectNewWord.js';
 import state from './state.js';
 
+const selects = document.querySelectorAll('#params select');
+
+
+export { disableSelects, enableSelects };
+
 // @desc Fetches data with parameters applied. 
 // The parameters are: difficulty, minLength, maxLength, since those seem to be the more intuitive
 // maxLength is added 1 (maxLength +=1) for a more intuitive GUI. i.e. 12  
@@ -14,10 +19,10 @@ export default function apiParamsListeners() {
 
   let sectionParams = document.querySelector('#params');
 
-  //disable for phrases
-  if(state.isPhrase) return;
-
   sectionParams.addEventListener('change', evt => {
+
+    //disable for phrases
+    if (state.isPhrase) return;
 
     const difficulty = parseInt(selectDifficulty.value);
     const minLength = parseInt(selectMinLength.value);
@@ -43,3 +48,18 @@ export default function apiParamsListeners() {
       .catch(error => console.log('ERROR: \n', error));
   })
 }
+
+
+
+function disableSelects() {
+  for (let i = 0; i < selects.length; i++) {
+    selects[i].disabled = true;
+  }
+}
+
+function enableSelects() {
+  for (let i = 0; i < selects.length; i++) {
+    selects[i].disabled = false;
+  }
+}
+

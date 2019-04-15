@@ -1,14 +1,18 @@
 import state from "./state.js";
 
+export { clearDefinitionsSection, showDefinitions };
+
+
 // @desc Sends a request to server to get a definition from the different 
 // dictionaries. Server then sends a request to the different 
 // dictionaries' APIs. The first set of definitions found will be returned.
 export default function fetchDefinition() {
 
-  if(state.isPhrase) {
+  if (state.isPhrase) {
     //definition should already be on element
     return;
   }
+
   return fetch(`/api/dictionaries/oxford/${state.singleWord}`)
     .then(function (response) {
 
@@ -23,8 +27,6 @@ export default function fetchDefinition() {
       // body = {string: provider, array: definitions, string: word}
       storeDictionaryDefinition(body)
 
-      //if here, show definition on page
-      // showDefinition(body);
     })
     .catch(error => {
       if (error) console.log(error);
@@ -45,7 +47,7 @@ let definitionsDiv = document.createElement('div');
 
 // uses elements above to display the data:
 // {string provider, array definitions, string word}
-export function showDefinitions() {
+function showDefinitions() {
 
   definitionsSection.innerHTML = '';//clear section
   const { provider, definitions, singleWord } = state;
@@ -68,7 +70,7 @@ export function showDefinitions() {
 
 // @desc clears the definitions section
 // I am definint it here because of this module's relation to the section
-export function clearDefinitionsSection() {
+function clearDefinitionsSection() {
 
   //clear div and each of the elements
   definitionsSection.innerHTML = `<p> </p>`;

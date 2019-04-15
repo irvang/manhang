@@ -8,6 +8,8 @@
 const canvas = document.getElementById('canvas-hang');
 const ctx = canvas.getContext('2d');
 
+export { createPole };
+
 export function drawCanvas(remainingTrials) {
 
   if (canvas.getContext) {
@@ -64,7 +66,7 @@ export function drawCanvas(remainingTrials) {
 }
 
 // @desc Draws pole shape
-export function createPole() {
+function createPole() {
 
   ctx.beginPath();
   ctx.strokeStyle = 'blue';

@@ -1,22 +1,39 @@
 import startGameAddListeners from './startGameAddListeners.js';
 import state from './state.js';
-
+import { disableSelects, enableSelects } from './apiParamsListeners.js';
 
 // @desc Fetch data receives 3 numbers: difficulty, minLength, maxLength
 // These parameters are the query string on the request to Reach API.
 // used only at on index.js to start game
 
-export function fetchDataAndStart(difficulty, minLength, maxLength) {
+const selectDifficulty = document.querySelector('#difficulty');
+const selectMinLength = document.querySelector('#min-length');
+const selectMaxLength = document.querySelector('#max-length');
+
+const wordDisplay = document.querySelector('#word-display');
+
+export function fetchDataAndStart() {
 
   //Sends a request to the server, which in turn sends another request to
   // http://app.linkedin-reach.io/words with the specified parameters as query string
+
+
+  const difficulty = parseInt(selectDifficulty.value);
+  const minLength = parseInt(selectMinLength.value);
+
+  /* Adding one to make interface more intuitive for user. */
+  const maxLength = parseInt(selectMaxLength.value) + 1;
 
   let url = '';
 
   if (state.isPhrase) {
     url = '/words/phrases';
+    wordDisplay.style.fontSize = '1.3rem';
+    disableSelects();
   } else {
     url = `/words/${difficulty}/${minLength}/${maxLength}`;
+    wordDisplay.style.fontSize = '1.7rem';
+    enableSelects();
   }
 
 

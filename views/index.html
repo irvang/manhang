@@ -16,13 +16,6 @@
 
     <main class="center-screen">
 
-        <canvas id="canvas-hang" width="150" height="150" style="border:1px solid #000000;"></canvas>
-
-        <div id="word-display">___ </div>
-        <!-- <input type="text" name="guessing-letter" id=""> -->
-        <!-- <br> -->
-
-
         <div class="alphabet">
             <div>
                 <span>a</span><span>b</span><span>c</span><span>d</span><span>e</span>
@@ -41,7 +34,14 @@
             </div>
         </div>
 
+        <canvas id="canvas-hang" width="150" height="150" style="border:1px solid #000000;"></canvas>
 
+        <div id="word-display">___ </div>
+        <!-- <input type="text" name="guessing-letter" id=""> -->
+        <!-- <br> -->
+    </main>
+
+    <section class="main-2">
         <div class="game-mode">
             Game mode:&nbsp;
 
@@ -55,9 +55,6 @@
 
         </div>
 
-    </main>
-
-    <section class="main-2">
         <button id="new-word-b">New word</button>
 
         <p id="remaining-trials">Trials left: <span>6</span></p>
@@ -65,7 +62,7 @@
         <section id="params">
             <div>
                 <label for="difficulty">Difficulty</label>
-                <select name="difficulty" id="difficulty">
+                <select class="isDisabled" name="difficulty" id="difficulty">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -81,7 +78,7 @@
 
             <div>
                 <label for="min-length">Min length</label>
-                <select name="min-length" id="min-length">
+                <select class="isDisabled" name="min-length" id="min-length">
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
@@ -99,7 +96,7 @@
 
             <div>
                 <label for="max-length">Max length</label>
-                <select name="max-length" id="max-length">
+                <select class="isDisabled" name="max-length" id="max-length">
                     <!-- <option value="1">1</option> -->
                     <option value="2">2</option>
                     <option value="3">3</option>

@@ -54,6 +54,7 @@ router.get('/phrases', (req, res) => {
         if (data[i] !== '') {
           // keeping structure the same to make it easier
           // body = {string: provider, array: definitions, string: word}
+          if(data[i])
           newArr.push({
             word: data[i], //phrase
             definitions: data[i + 1], //single definition
