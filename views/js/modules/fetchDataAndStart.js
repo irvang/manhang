@@ -2,9 +2,6 @@ import startGameAddListeners from './startGameAddListeners.js';
 import state from './state.js';
 import { disableSelects, enableSelects } from './apiParamsListeners.js';
 
-// @desc Fetch data receives 3 numbers: difficulty, minLength, maxLength
-// These parameters are the query string on the request to Reach API.
-// used only at on index.js to start game
 
 const selectDifficulty = document.querySelector('#difficulty');
 const selectMinLength = document.querySelector('#min-length');
@@ -12,6 +9,9 @@ const selectMaxLength = document.querySelector('#max-length');
 
 const wordDisplay = document.querySelector('#word-display');
 
+// @desc Fetch data receives 3 numbers: difficulty, minLength, maxLength
+// These parameters are the query string on the request to Reach API.
+// used only at on index.js to start game
 export function fetchDataAndStart() {
 
   //Sends a request to the server, which in turn sends another request to
@@ -28,7 +28,7 @@ export function fetchDataAndStart() {
 
   if (state.isPhrase) {
     url = '/words/phrases';
-    wordDisplay.style.fontSize = '1.3rem';
+    wordDisplay.style.fontSize = '1.0rem';
     disableSelects();
   } else {
     url = `/words/${difficulty}/${minLength}/${maxLength}`;
