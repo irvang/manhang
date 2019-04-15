@@ -9,10 +9,10 @@ const mongoose = require('mongoose');
 const app = express();
 
 //====CUSTOM MODULES
-const usersRouter = require('./routes/users');
+// const usersRouter = require('./routes/users');
 const dictionariesRouter = require('./routes/oxford-api');
 const wordsRouter = require('./routes/words');
-const dbConfig = require('./dbConfig/config-index');
+// const dbConfig = require('./dbConfig/config-index');
 
 //====PORT
 const PORT = process.env.PORT || 3000;
@@ -22,7 +22,7 @@ app.use(bodyParser.json())
 app.use('/', express.static('views'));
 
 //====ROUTER
-app.use('/api/users', usersRouter);
+// app.use('/api/users', usersRouter);
 app.use('/api/dictionaries', dictionariesRouter)
 app.use('/words', wordsRouter)
 
@@ -32,10 +32,10 @@ app.get('/', function (req, res, next) {
 });
 
 //====MONGOOSE CONNECTION
-mongoose.connect(
-  dbConfig.getDbConnectionString(), //returns string
-  { useNewUrlParser: true }
-);
+// mongoose.connect(
+//   dbConfig.getDbConnectionString(), //returns string
+//   { useNewUrlParser: true }
+// );
 
 //====SERVER CONNECTION
 app.listen(PORT, function () {

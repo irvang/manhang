@@ -10,7 +10,6 @@ import fetchDefinition, { clearDefinitionsSection } from './fetchDefinition.js';
 export default function selectNewWord() {
 
   // select random word from array
-console.log(state.ALL_WORDS);
   if (state.isPhrase) {
     let randomIndex = Math.floor(Math.random() * state.ALL_WORDS.length);
 
@@ -80,8 +79,8 @@ console.log(state.ALL_WORDS);
     state.consecutiveWins = 0;//reset score
   }
 
-  // //For testing only
-  console.log('word: ' + state.singleWord, state.singleWord.length);
+  // //FOR TESTING ONLY
+  // console.log('word: ' + state.singleWord, state.singleWord.length);
   //check length is same as blanks
   // console.log('length equal:', state.revealedWord.length === state.singleWord.length);
 }

@@ -62,7 +62,6 @@ router.get('/phrases', (req, res) => {
         if (data[i] !== '' && data[i].length > 2) {
           // keeping structure the same to make it easier
           // body = {string: provider, array: definitions, string: word}
-          console.log(data[i])
           if (data[i])
             newArr.push({
               word: data[i], //phrase
