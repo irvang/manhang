@@ -32,7 +32,6 @@ export function fetchDataAndStart(difficulty, minLength, maxLength) {
       //may have to restructure so that gui loads before all the response
       //====Starts game after receiving array
       state.ALL_WORDS = [...bodyAsJson];//clone array, not a reference
-console.log(state.ALL_WORDS)
       startGameAddListeners();// uses state.ALL_WORDS
     })
     .catch(error => console.log('ERROR: \n', error));

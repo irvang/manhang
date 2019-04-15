@@ -49,7 +49,7 @@ export function showDefinitions() {
 
   definitionsSection.innerHTML = '';//clear section
   const { provider, definitions, singleWord } = state;
-console.log(definitions)
+
   definitionH3.innerHTML = singleWord + ":";
 
   // loop through array, create li with definition and append to ol

@@ -16,6 +16,7 @@ const state = {
   consecutiveWins: 0,
   isFinished: false,
   isWon: false,
+  // isPhrase: true
   isPhrase: false
 }
 

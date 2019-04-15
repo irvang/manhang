@@ -24,14 +24,11 @@ export default function selectNewWord() {
   } else {
     state.singleWord = state.ALL_WORDS[Math.floor(Math.random() * state.ALL_WORDS.length)];
 
-    //fetch and store definition here, to avoid lag
-    //display when game finishes
   }
 
   // happens as soon as word is selected to avoid lag
   fetchDefinition();
 
-  console.log(state)
   //create a string that holds the length of of the words in blanks, 
   // or whatever is revealed so far
   state.revealedWord = '';

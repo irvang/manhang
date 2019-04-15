@@ -29,7 +29,7 @@ body>* {
 main * {
     color: black;
     /* letter-spacing: .2rem; */
-    line-height: 1rem;
+    /* line-height: 1rem; */
     padding: 0.2rem 0.3rem;
     margin: 1px;
 }
@@ -56,7 +56,7 @@ section.main-2 > * {
 
 #word-display {
     font-size: 1.7rem;
-    margin: 15px;
+    margin: 15px 0;
     letter-spacing: .4rem;
 }
 
@@ -133,6 +133,7 @@ div.alphabet span {
 .alphabet {
     display: flex;
     flex-flow: column wrap;
+    line-height: 1rem;
     /* flex-direction: row;
     flex-wrap: wrap; */
     /* align-items: center;
@@ -154,4 +155,11 @@ div.alphabet span {
 
 .alphabet>div>span {
     flex: 1 1 35px;
+}
+
+.game-mode {
+    font-size: 0.8rem;
+}
+.game-mode > label {
+    font-size: 0.7rem;
 }

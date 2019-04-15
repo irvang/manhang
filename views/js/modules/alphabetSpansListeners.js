@@ -35,7 +35,6 @@ function compareInputToWord(evt) {
 
   /* if letter is in string, change color to greenish chartreuse and reveal the
   matches within the blanks */
-  console.log(state.singleWord.toLowerCase().includes(letter))
   if (state.singleWord.toLowerCase().includes(letter)) {
     this.style.backgroundColor = 'chartreuse';
 
