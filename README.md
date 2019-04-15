@@ -4,45 +4,19 @@
 ## Overview
 
 
-Manhang is an implementation of the popular game (you guessed it) [Hangman](/Users/irvingangulo/dev/manhang-2/README.md). The game consists of guessing a word that another player, the computer in this case, has selected. For this implementation, the user will have 6 chances to guess the word. 
-
-<!-- After the user finishes, the word meaning is automatically searched in two (2) dictionaries, Oxford University Press and Webster-Merrian Online. -->
+Manhang is an implementation of the popular game (you guessed it) [Hangman](/Users/irvingangulo/dev/manhang-2/README.md). The game consists of guessing a word that another player, the computer in this case, has selected. For this implementation, the user will have 6 chances to guess the word. The user will have the ability to select a new word and to select whether to play with phrases instead of words.
 
 
 ### Deployed Site
 
 [Manhang on Heroku](https://manhang-irv.herokuapp.com/)
 
-
-## Features
-I have included several features in this project as a way to make the game a bit more appealing. Some of these features are: 
-
-- Display word defintions at end of game.
-
-- Drawing of the figure to higlight remaining trials.
-
-- Implementation of difficulty, min and max word lengths, through the provided Reach API.
-
-## Featured APIs and technologies
-- Canvas API: Display drawing.
-
-- Dictionaries: I am using Oxford and Merriam-Webster APIs to search for the meaning of the words once the game is finished, if the word is not found, a messag esaying "No definition found" is displayed.
-
-- Modules: JavaScript modules using import and export statements to help with code maintenance and clarity. 
-
-- Fetch API: Requests data from web server.
-
-- Responsive design: Using flexbox, to adjust screen to different sizes. Needs improvement for mobile devices, although it displays well.
-
-<!-- Alphabet interface, remaining trials
-express.router -->
-
 ## Setup
 ### Prerequisites
 [Node.js](https://nodejs.org/en/) is required in order to run the application locally. To install Node, follow the istrunctions at the [downloads page](https://nodejs.org/en/download/).
 
 ### Installation
-- Clone or download the folder. 
+- Clone or download the folder
 
 - Change to folder directory: `cd ~/manhang`
 
@@ -50,25 +24,48 @@ express.router -->
 
 - Start application: `node app.js`
 
-The application should now start on the determined server. 
+- Visit broser on localhost:3000 (default)
 
+Server should now be listening on port (3000) . 
+
+
+
+
+## Features
+I have included several features in this project as a way to make the game a bit more appealing. Some of these features are: 
+
+- Ability to choose from either word or phrase mode.
+
+- Display word or phrase defintions at end of game.
+
+- Drawing a figure to higlight remaining trials.
+
+- Implementation of difficulty, min and max word lengths, through the provided Reach API. These are also disabled when phrase mode is selected.
+
+## Featured APIs and technologies
+- [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API): Display drawing.
+
+- Dictionaries: Use of [Oxford](https://developer.oxforddictionaries.com/) and [Merriam-Webster](https://dictionaryapi.com/) APIs to search for the meaning of the words once the game is finished, if the word is not found, a messag esaying "No definition found" is displayed.
+
+- Modules: JavaScript modules using import and export statements to help with code maintenance and clarity. 
+
+- [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API): Requests data from web server.
+
+- Responsive design: Using [flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox), to adjust screen to different sizes.
 
 
 ## Built With
 
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript) - A high-level, interpreted programming language that conforms to the ECMAScript specification.
 - [Node.js](https://nodejs.org/en/download/) - Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [Express.js](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
 
-- [JavaScript](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
 
 
-
-<!-- not sure if will keep this -->
-<!-- - [Mongoose](https://mongoosejs.com/) - Elegant mongodb object modeling for node.js -->
-
-
-
-<!-- ## Acknowledgments -->
+## Other Resources
+- [Oxford Dictionaries API](https://developer.oxforddictionaries.com/) 
+- [Merriam-Webster Dictionary API](https://dictionaryapi.com/) 
+- [Know Your Phrase](https://knowyourphrase.com/) 
 
 
  

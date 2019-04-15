@@ -3,10 +3,10 @@ const router = express.Router();
 const fetch = require('node-fetch');
 const fs = require('fs');
 
-/* @route: GET /words
-   @desc Get all words from Reach.io API. Uses fetch to get around the Cross-
-   Origin Resource Sharing (CORS) policy issue when requesting access directly 
-   from the front end. */
+// @route: GET / words
+// @desc Get all words from Reach.io API.Uses fetch to get around the Cross -
+//   Origin Resource Sharing(CORS) policy issue when requesting access directly
+// from the front end.
 
 router.get('/:difficulty/:minLength/:maxLength', (req, res) => {
   /* To use the different queries in api: 
@@ -30,7 +30,8 @@ router.get('/:difficulty/:minLength/:maxLength', (req, res) => {
     .catch(err => console.error('\n ERROR in catch:\n', err));
 });
 
-
+// @route GET /words
+// @desc Gets and formats phrases' data
 router.get('/phrases', (req, res) => {
 
   let data = '';
@@ -52,13 +53,13 @@ router.get('/phrases', (req, res) => {
         //add data[i] and at i+1
         //remove non-alphabet characters
         if (data[i].includes('’') || data[i].includes('(') || data[i].includes(')') ||
-          data[i].includes('.') || data[i].includes(',') || data[i].includes('/') || 
+          data[i].includes('.') || data[i].includes(',') || data[i].includes('/') ||
           data[i].includes('-') || data[i].includes(';')) {
           i++;
           continue;
         }
 
-        //length>2 in order to make sure no ' ' are selected, 
+        // length>2 so no one-space word (' ') selected
         if (data[i] !== '' && data[i].length > 2) {
           // keeping structure the same to make it easier
           // body = {string: provider, array: definitions, string: word}
