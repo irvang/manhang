@@ -52,7 +52,7 @@ router.get('/phrases', (req, res) => {
       for (let i = 0; i < data.length; i++) {
         //add data[i] and at i+1
         //remove non-alphabet characters
-        if (data[i].includes('’') || data[i].includes('(') || data[i].includes(')') ||
+        if (data[i].includes('’') || data[i].includes('‘') || data[i].includes('(') || data[i].includes(')') ||
           data[i].includes('.') || data[i].includes(',') || data[i].includes('/') ||
           data[i].includes('-') || data[i].includes(';')) {
           i++;
