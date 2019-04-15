@@ -10,7 +10,7 @@ import fetchDefinition, { clearDefinitionsSection } from './fetchDefinition.js';
 export default function selectNewWord() {
 
   // select random word from array
-
+console.log(state.ALL_WORDS);
   if (state.isPhrase) {
     let randomIndex = Math.floor(Math.random() * state.ALL_WORDS.length);
 
@@ -33,7 +33,7 @@ export default function selectNewWord() {
   // or whatever is revealed so far
   state.revealedWord = '';
 
-  //create underscores of the full lenght of word, no letters revealed so far 
+  //create underscores of the full length of word, no letters revealed so far 
   // i.e.: "_ _ _ _"
   for (let i = 0; i < state.singleWord.length; i++) {
     if (state.singleWord[i] !== ' ') state.revealedWord += '_';
@@ -81,7 +81,7 @@ export default function selectNewWord() {
   }
 
   // //For testing only
-  console.log('word: ' + state.singleWord);
+  console.log('word: ' + state.singleWord, state.singleWord.length);
   //check length is same as blanks
-  // console.log('lenght equal:', state.revealedWord.length === state.singleWord.length);
+  // console.log('length equal:', state.revealedWord.length === state.singleWord.length);
 }

@@ -50,20 +50,30 @@ router.get('/phrases', (req, res) => {
       let newArr = [];
       for (let i = 0; i < data.length; i++) {
         //add data[i] and at i+1
-        // console.log(i +1, data[i])
-        if (data[i] !== '') {
+        //remove non-alphabet characters
+        if (data[i].includes('’') || data[i].includes('(') || data[i].includes(')') ||
+          data[i].includes('.') || data[i].includes(',') || data[i].includes('/') || 
+          data[i].includes('-') || data[i].includes(';')) {
+          i++;
+          continue;
+        }
+
+        //length>2 in order to make sure no ' ' are selected, 
+        if (data[i] !== '' && data[i].length > 2) {
           // keeping structure the same to make it easier
           // body = {string: provider, array: definitions, string: word}
-          if(data[i])
-          newArr.push({
-            word: data[i], //phrase
-            definitions: data[i + 1], //single definition
-            provider: "https://knowyourphrase.com/"
-          });
+          console.log(data[i])
+          if (data[i])
+            newArr.push({
+              word: data[i], //phrase
+              definitions: data[i + 1], //single definition
+              provider: `<a href='https://knowyourphrase.com/' target='_blank'>Know Your Phrase </a>`
+            });
           //increase en extra one since value has been obtained already
           i++;
         }
       }
+
       res.status(200).send(newArr);
     });
 

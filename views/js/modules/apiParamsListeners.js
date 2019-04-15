@@ -10,7 +10,7 @@ export { disableSelects, enableSelects };
 // The parameters are: difficulty, minLength, maxLength, since those seem to be the more intuitive
 // maxLength is added 1 (maxLength +=1) for a more intuitive GUI. i.e. 12  
 // normally fetches words of max length of 11, adding one to 12 (13) fetches words
-// of max lenght 12
+// of max length 12
 //cannot be called on phrases mode
 export default function apiParamsListeners() {
 
