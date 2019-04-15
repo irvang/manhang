@@ -51,7 +51,7 @@ router.get('/phrases', (req, res) => {
       let newArr = [];
       for (let i = 0; i < data.length; i++) {
         //add data[i] and at i+1
-        //remove non-alphabet characters
+        //remove non-alphabet characters, since there is no input for those
         if (data[i].includes('’') || data[i].includes('‘') || data[i].includes('(') || data[i].includes(')') ||
           data[i].includes('.') || data[i].includes(',') || data[i].includes('/') ||
           data[i].includes('-') || data[i].includes(';')) {
