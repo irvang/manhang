@@ -11,6 +11,7 @@ export { disableSelects, enableSelects };
 // maxLength is added 1 (maxLength +=1) for a more intuitive GUI. i.e. 12  
 // normally fetches words of max length of 11, adding one to 12 (13) fetches words
 // of max lenght 12
+//cannot be called on phrases mode
 export default function apiParamsListeners() {
 
   let selectDifficulty = document.querySelector('#difficulty');
@@ -20,9 +21,6 @@ export default function apiParamsListeners() {
   let sectionParams = document.querySelector('#params');
 
   sectionParams.addEventListener('change', evt => {
-
-    //disable for phrases
-    if (state.isPhrase) return;
 
     const difficulty = parseInt(selectDifficulty.value);
     const minLength = parseInt(selectMinLength.value);
