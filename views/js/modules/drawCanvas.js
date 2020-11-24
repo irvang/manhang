@@ -1,19 +1,16 @@
-
 // @desc draws shapes in canvas. exports drawCanvas() and createPole();
-// uses a switch statement to draw different parts of the figure to the 
+// uses a switch statement to draw different parts of the figure to the
 // canvas depending on the remaining trials left
 // See https://en.wikipedia.org/wiki/Hangman_(game) for diagram as well
 
-
-const canvas = document.getElementById('canvas-hang');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("canvas-hang");
+const ctx = canvas.getContext("2d");
 
 export { createPole };
 
 export function drawCanvas(remainingTrials) {
-
   if (canvas.getContext) {
-    ctx.strokeStyle = 'blue';
+    ctx.strokeStyle = "blue";
     switch (remainingTrials) {
       case 6:
         // clear canvas
@@ -67,9 +64,8 @@ export function drawCanvas(remainingTrials) {
 
 // @desc Draws pole shape
 function createPole() {
-
   ctx.beginPath();
-  ctx.strokeStyle = 'blue';
+  ctx.strokeStyle = "blue";
 
   ctx.moveTo(40, 25);
   ctx.lineTo(40, 100);

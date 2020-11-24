@@ -20,6 +20,7 @@ export default async function fetchDefinition() {
       const body = await response.json(); //a promise, convert to object
       storeDictionaryDefinition(body);
     } else {
+      console.error(response);
       throw new Error("Got some not-200 code");
     }
   } catch (error) {

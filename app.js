@@ -15,7 +15,7 @@ const wordsRouter = require("./routes/words");
 const wordsApiRouter = require("./routes/words-api");
 
 //====PORT
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3030;
 
 //MIDDLEWARE
 app.use(bodyParser.json());

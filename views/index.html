@@ -1,129 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Manhang</title>
 
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css" />
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <main class="center-screen">
-
-        <div class="alphabet">
-            <div>
-                <span>a</span><span>b</span><span>c</span><span>d</span><span>e</span>
-            </div>
-            <div>
-                <span>f</span><span>g</span><span>h</span><span>i</span><span>j</span>
-            </div>
-            <div>
-                <span>k</span><span>l</span><span>m</span><span>n</span><span>o</span>
-            </div>
-            <div>
-                <span>p</span><span>q</span><span>r</span><span>s</span><span>t</span>
-            </div>
-            <div>
-                <span>u</span><span>v</span><span>w</span><span>x</span><span>y</span><span>z</span>
-            </div>
+      <div class="alphabet">
+        <div>
+          <span>a</span><span>b</span><span>c</span><span>d</span><span>e</span>
         </div>
+        <div>
+          <span>f</span><span>g</span><span>h</span><span>i</span><span>j</span>
+        </div>
+        <div>
+          <span>k</span><span>l</span><span>m</span><span>n</span><span>o</span>
+        </div>
+        <div>
+          <span>p</span><span>q</span><span>r</span><span>s</span><span>t</span>
+        </div>
+        <div>
+          <span>u</span><span>v</span><span>w</span><span>x</span><span>y</span
+          ><span>z</span>
+        </div>
+      </div>
 
-        <canvas id="canvas-hang" width="150" height="150" style="border:1px solid #000000;"></canvas>
+      <canvas
+        id="canvas-hang"
+        width="150"
+        height="150"
+        style="border: 1px solid #000000"
+      ></canvas>
 
-        <div id="word-display">___ </div>
-        <!-- <input type="text" name="guessing-letter" id=""> -->
-        <!-- <br> -->
+      <div id="word-display">___</div>
+      <!-- <input type="text" name="guessing-letter" id=""> -->
+      <!-- <br> -->
     </main>
 
     <section class="main-2">
-        <div class="game-mode">
-            Game mode:&nbsp;
+      <div class="game-mode">
+        Game mode:&nbsp;
 
-            <label>
-                <input type="checkbox" name="phrase" value="word" checked> Word
-            </label>
+        <label>
+          <input type="checkbox" name="phrase" value="word" checked /> Word
+        </label>
 
-            <label>
-                <input type="checkbox" name="word" value="phrase">Phrase
-            </label>
+        <label>
+          <input type="checkbox" name="word" value="phrase" />Phrase
+        </label>
+      </div>
 
+      <button id="new-word-b">New word</button>
+
+      <p id="remaining-trials">Trials: <span>6</span></p>
+
+      <section id="params">
+        <div>
+          <label for="difficulty">Difficulty</label>
+          <select class="isDisabled" name="difficulty" id="difficulty">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
         </div>
 
-        <button id="new-word-b">New word</button>
+        <div>
+          <label for="min-length">Min length</label>
+          <select class="isDisabled" name="min-length" id="min-length">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <!-- <option value="13">13</option> -->
+          </select>
+        </div>
 
-        <p id="remaining-trials">Trials: <span>6</span></p>
-
-        <section id="params">
-            <div>
-                <label for="difficulty">Difficulty</label>
-                <select class="isDisabled" name="difficulty" id="difficulty">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-            </div>
-
-            <div>
-                <label for="min-length">Min length</label>
-                <select class="isDisabled" name="min-length" id="min-length">
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <!-- <option value="13">13</option> -->
-                </select>
-            </div>
-
-            <div>
-                <label for="max-length">Max length</label>
-                <select class="isDisabled" name="max-length" id="max-length">
-                    <!-- <option value="1">1</option> -->
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12" selected>12</option>
-                    <!-- <option value="13" selected>13</option>
+        <div>
+          <label for="max-length">Max length</label>
+          <select class="isDisabled" name="max-length" id="max-length">
+            <!-- <option value="1">1</option> -->
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12" selected>12</option>
+            <!-- <option value="13" selected>13</option>
                             <option value="14" selected>14</option> -->
-                </select>
-            </div>
+          </select>
+        </div>
+      </section>
 
-        </section>
-
-        <section class="definitions">
-            <!-- HOLDS WORDS DEFINITIONS -->
-        </section>
-
+      <section class="definitions">
+        <!-- HOLDS WORDS DEFINITIONS -->
+      </section>
     </section>
 
-
     <script type="module" src="js/index.js"></script>
-</body>
-
+  </body>
 </html>

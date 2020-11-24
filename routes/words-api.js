@@ -30,15 +30,20 @@ const getData = async (params) => {
         // hasDetails: "hasDetails,typeof",
       },
     });
-    console.clear();
-    console.log(data);
+    // console.clear();
+    console.log("DATA: ", data);
     if (data.results) {
-      console.log("SYNONYM", data.results[0].synonyms);
-
+      if (data.results[0].synonyms) {
+        console.log("SYNONYM", data.results[0].synonyms.toString());
+      }
       console.log(
         "DEFINITIONS",
         data.results.map((item) => item.definition)
       );
+
+      if (data.results.typeOf) {
+        console.log("TYPE OF", data.typeOf);
+      }
     }
     if (data.syllables) {
       console.log("SYLLABLES", data.syllables);
